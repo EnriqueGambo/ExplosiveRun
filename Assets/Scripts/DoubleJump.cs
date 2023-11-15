@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DoubleJump : MonoBehaviour
 {
-    void OnTriggerEnter (Collider other)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if(other.CompareTag("Player"))
+        if(collider.gameObject.name == "Player")
         {
             Pickup();
         }
     }
     void Pickup()
     {
-        Debug.Log("Powerup");
+        Debug.Log("Double Jump Acquired");
     }
 }
