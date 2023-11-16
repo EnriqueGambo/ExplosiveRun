@@ -7,6 +7,7 @@ public class LevelTimer : MonoBehaviour
     public int min =0;
     public int sec=0;
     public float totaltime;
+    bool gamepause = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +17,24 @@ public class LevelTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(min <= 99 && sec <= 59)
+        if(min <= 99 && sec <= 59 && gamepause ==false)
         {
             totaltime += Time.deltaTime;
             min = (int)(totaltime / 60);
             sec = (int)(totaltime % 60);
         }
         time.text = min.ToString("00") + ":" + sec.ToString("00");
+    }
+
+    public void changegamepause()
+    {
+        if(gamepause) {
+            gamepause = false;
+        }
+        else
+        {
+            gamepause = true;
+        }
     }
 
 }
