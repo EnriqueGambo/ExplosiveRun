@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleJump : MonoBehaviour
+public class Armor : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -13,7 +13,7 @@ public class DoubleJump : MonoBehaviour
     }
     void Pickup(Collider2D Player)
     {
-        Debug.Log("Double Jump Acquired");
+        Debug.Log("Armor Acquired");
         
         Destroy(gameObject);
     }
