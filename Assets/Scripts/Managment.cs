@@ -15,7 +15,7 @@ public class Managment : MonoBehaviour
     {
         SaveGame.save(this);
     }
-
+    //HELLO CAN YOU SEE THIS
     public void Load()
     {
         GameData data = SaveGame.loadGame();
