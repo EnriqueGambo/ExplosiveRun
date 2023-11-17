@@ -11,8 +11,8 @@ public class GameData
 
     public GameData(Managment managment)
     {
-        this.level = managment.level;
-        this.time = managment.time;
-        this.token_count = managment.token;
+        this.level = managment.getlevel();
+        this.time = managment.gettime();
+        this.token_count = managment.gettoken();
     }
 }
