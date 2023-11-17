@@ -9,6 +9,7 @@ public class Managment : MonoBehaviour
 {
     public static Managment Instance;
     public static int total_levels = 4;
+    public static int secenes_before_levels = 2;
     private bool[] level = { true, false, false, false };
     private int[,] time = { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
     private int[] token = {0,0,0,0};
