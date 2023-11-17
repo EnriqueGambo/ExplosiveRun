@@ -7,11 +7,21 @@ public class MainMenu : MonoBehaviour
 {
     public void NewGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        Managment.Instance.NewGame();
+    }
+
+    public void Continue()
+    {
+        Managment.Instance.ContinueLvl();
+    }
+
+    public void LvlSelection()
+    {
+       Managment.Instance.updateLvlbuttons();
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+      Managment.Instance.QuitGame();
     }
 }

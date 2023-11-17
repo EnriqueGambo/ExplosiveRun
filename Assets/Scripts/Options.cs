@@ -12,6 +12,6 @@ public class Options : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
     }
 }
