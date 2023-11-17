@@ -652,11 +652,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978b9bfa84a304844b419f0dba7902f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
+  jump_power: 16
   rb: {fileID: 271048199}
   groundcheck: {fileID: 2094514773}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
 --- !u!61 &271048198
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1157,7 +1159,7 @@ Transform:
   m_GameObject: {fileID: 684994843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.700104, y: 5.8236694, z: -9.94269}
+  m_LocalPosition: {x: 7.914917, y: 5.5055695, z: -9.947862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2377,7 +2379,7 @@ GameObject:
   - component: {fileID: 1826518133}
   - component: {fileID: 1826518135}
   - component: {fileID: 1826518134}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
