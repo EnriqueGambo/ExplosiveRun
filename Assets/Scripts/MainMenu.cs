@@ -24,4 +24,10 @@ public class MainMenu : MonoBehaviour
     {
       Managment.Instance.QuitGame();
     }
+
+    public void LvlSelected(int Lvl)
+    {
+        string lvlName = "Level " + Lvl;
+        SceneManager.LoadScene(lvlName);
+    }
 }

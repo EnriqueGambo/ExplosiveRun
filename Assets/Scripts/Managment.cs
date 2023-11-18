@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -49,6 +51,8 @@ public class Managment : MonoBehaviour
 
     public void Load()
     {
+        GameObject gameObject =GameObject.Find("FailedLoad");
+        gameObject.SetActive(false);
         GameData data = SaveGame.loadGame();
         if (data != null)
         {
@@ -57,20 +61,20 @@ public class Managment : MonoBehaviour
             token = data.token_count;
             if (level[0] == false)
             {
-                setNewGame();
-                Save();
-                SceneManager.LoadScene(2);
+                StartCoroutine(waitSec(3,gameObject));
+                
             }
             else
             {
-                SceneManager.LoadSceneAsync(1);
+                SceneManager.LoadScene(1);
+
+
             }
         }
         else
         {
-            setNewGame();
-            Save();
-            SceneManager.LoadScene(2);
+            StartCoroutine (waitSec(3, gameObject));
+
         }
     }
 
@@ -145,5 +149,14 @@ public class Managment : MonoBehaviour
         {
             level[i] = false;
         }
+    }
+
+    IEnumerator waitSec(int sec, GameObject gameObject)
+    {
+        gameObject.SetActive(true);
+        yield return new WaitForSeconds(sec);
+        setNewGame();
+        Save();
+        SceneManager.LoadScene(2);
     }
 }
