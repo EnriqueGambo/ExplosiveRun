@@ -119,8 +119,6 @@ public class Managment : MonoBehaviour
         for(int i = 1; i <= total_levels; i++)
         {
             string name = "Level" + i;
-            Debug.Log(level[i-1]);
-            Debug.Log(name);
             Button button = GameObject.Find(name).GetComponent<Button>();
             if(button != null && level[i - 1] == true)
             {
@@ -129,7 +127,21 @@ public class Managment : MonoBehaviour
             {
                 button.interactable = false;
             }
+            //Lvl Data
+            name = "TextTime" + i;
+            Text textTime = GameObject.Find(name).GetComponent<Text>();
+            textTime.text = "Time: "+time[i-1,0].ToString("00") +":"+ time[i-1,1].ToString("00");
+            name = "TextToken" + i;
+            Text textToken = GameObject.Find(name).GetComponent<Text>();
+            textToken.text = "Token: " + token[i- 1].ToString();
+
         }
+
+    }
+
+    public void gotoLvl(int lvl)
+    {
+        SceneManager.LoadScene(lvl + secenes_before_levels-1);
     }
 
     private void setNewGame()

@@ -24,4 +24,9 @@ public class MainMenu : MonoBehaviour
     {
       Managment.Instance.QuitGame();
     }
+
+    public void gotoLvl(int lvl)
+    {
+        Managment.Instance.gotoLvl(lvl);
+    }
 }
