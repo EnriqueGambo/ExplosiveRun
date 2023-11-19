@@ -13,7 +13,7 @@ public class Managment : MonoBehaviour
     public static int total_levels = 4;
     public static int secenes_before_levels = 2;
     private bool[] level = { true, false, false, false };
-    private int[,] time = { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+    private int[,] time = { { 999, 999 }, { 999, 999 }, { 999, 999 }, { 999, 999 } };
     private int[] token = {0,0,0,0};
 
 
@@ -153,8 +153,8 @@ public class Managment : MonoBehaviour
         for (int i = 0; i < total_levels ; i++)
         {
             token[i] = 0;
-            time[i,0] = 0;
-            time[i,1] = 0;
+            time[i,0] = 999;
+            time[i,1] = 999;
         }
         level[0] =true;
         for(int i = 1; i < total_levels ; i++)
@@ -170,5 +170,27 @@ public class Managment : MonoBehaviour
         setNewGame();
         Save();
         SceneManager.LoadScene(2);
+    }
+
+    public void levelCompleted()
+    {
+        int current_level = SceneManager.GetActiveScene().buildIndex-1;
+        LevelTimer levelTimer = GameObject.Find("TimerText (Legacy)").GetComponent<LevelTimer>();
+        int timeMin = levelTimer.getMin();
+        int timeSec = levelTimer.getSec();
+        if (timeMin < time[current_level, 0] || (timeMin == time[current_level, 0] && timeSec < time[current_level, 1]))
+        {
+            time[current_level, 0] = timeMin;
+            time[current_level, 1] = timeSec;
+        }
+        TokenCheck tokenCheck = GameObject.Find("Token1").GetComponent<TokenCheck>();
+        int tokencount = tokenCheck.getToken();
+        if(tokencount > token[current_level])
+        {
+            token[current_level] = tokencount;
+        }
+        Save();
+       
+
     }
 }

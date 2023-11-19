@@ -6,7 +6,13 @@ using UnityEngine.UI;
 
 public class TokenCheck : MonoBehaviour
 {
+    int token = 0;
     Color color = Color.white;
+
+    public int getToken()
+    {
+        return token;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +22,9 @@ public class TokenCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int[] token = Managment.Instance.gettoken();
         // two secens before levels
         int level = SceneManager.GetActiveScene().buildIndex- Managment.secenes_before_levels;
-        Debug.Log(level);
-        if (token[level] == 0)
+        if (token == 0)
         {
             color.g = .25f;
             color.b = .25f;
@@ -29,7 +33,7 @@ public class TokenCheck : MonoBehaviour
             GameObject.Find("Token1").GetComponent<Image>().color = color;
             GameObject.Find("Token2").GetComponent<Image>().color = color;
             GameObject.Find("Token3").GetComponent<Image>().color = color;
-        }else if (token[level] == 1)
+        }else if (token == 1)
         {
             color = Color.white;
             color.a = 1f;
@@ -40,7 +44,7 @@ public class TokenCheck : MonoBehaviour
             color.a = .95f;
             GameObject.Find("Token2").GetComponent<Image>().color = color;
             GameObject.Find("Token3").GetComponent<Image>().color = color;
-        }else if (token[level] == 2)
+        }else if (token == 2)
         {
             color = Color.white;
             color.a = 1f;
@@ -52,7 +56,7 @@ public class TokenCheck : MonoBehaviour
             color.a = .95f;
             GameObject.Find("Token3").GetComponent<Image>().color = color;
         }
-        else if (token[level] == 3)
+        else if (token== 3)
         {
             color = Color.white;
             color.a = 1f;

@@ -8,6 +8,16 @@ public class LevelTimer : MonoBehaviour
     public int sec=0;
     public float totaltime;
     bool gamepause = false; 
+
+    public int getMin()
+    {
+        return min;
+    }
+
+    public int getSec()
+    {
+        return sec;
+    }
     // Start is called before the first frame update
     void Start()
     {
