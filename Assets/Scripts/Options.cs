@@ -14,4 +14,19 @@ public class Options : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(1);
     }
+
+    public void SetGameSoundButtons()
+    {
+        //Setting up sound buttons.
+        if (AudioListener.volume > 0)
+        {
+            GameObject.Find("SoundOn (Legacy)").SetActive(false);
+            GameObject.Find("SoundOff (Legacy)").SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("SoundOn (Legacy)").SetActive(true);
+            GameObject.Find("SoundOff (Legacy)").SetActive(false);
+        }
+    }
 }
