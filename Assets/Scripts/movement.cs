@@ -7,7 +7,8 @@ public class movement : MonoBehaviour
     private float horizontal;
     public float speed = 8f;
     public float jump_power = 16f;
-    public static int jump_count = 1;
+    public int jump_count = 1;
+    public int jcounter = 1;
     private bool isRight = true;
     private bool is_pressed = false;
     private bool in_air = false;
@@ -31,14 +32,17 @@ public class movement : MonoBehaviour
             is_pressed = true;
             in_air = true;
             rb.velocity = new Vector2(rb.velocity.x, jump_power);
-            jump_count = jump_count - 1;
+            jump_count--;
             
         }
         if (isGrounded() && in_air)
         {
             in_air = false;
             is_pressed = false;
-            jump_count++;
+            if(jump_count == 0 && jcounter != 1)
+                jump_count+=jcounter;
+            else
+                jump_count++;
         }
 
 

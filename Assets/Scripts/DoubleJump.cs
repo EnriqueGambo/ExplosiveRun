@@ -13,8 +13,8 @@ public class DoubleJump : MonoBehaviour
     }
     void Pickup(Collider2D Player)
     {
-        Debug.Log("Double Jump Acquired");
-        
+        movement stats = Player.GetComponent<movement>();
+        stats.jcounter++;        
         Destroy(gameObject);
     }
 }

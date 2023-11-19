@@ -13,8 +13,8 @@ public class SpeedBoost : MonoBehaviour
     }
     void Pickup(Collider2D Player)
     {
-        Debug.Log("Speed Boost Acquired");
-        
+        movement stats = Player.GetComponent<movement>();
+        stats.speed *= (float)1.5; 
         Destroy(gameObject);
     }
 }
