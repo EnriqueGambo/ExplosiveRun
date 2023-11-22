@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,28 +7,48 @@ public class movement : MonoBehaviour
 {
     private float horizontal;
     public float speed = 8f;
+    public float curr_speed = 0f;
+    private float acceleration = .3f;
+
     public float jump_power = 16f;
     public int jump_count = 1;
     public int jcounter = 1;
+
     private bool isRight = true;
     private bool is_pressed = false;
     private bool in_air = false;
+    private float decelerate = .5f;
+    private float flip = 0;
 
-    [SerializeField] private Rigidbody2D rb;
+    public int armor;
+    public Vector2 Spawn;
+
+    [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
     [SerializeField] private LayerMask groundLayer;
     // Start is called before the first frame update
 
     // Update is called once per frame
+    void Start()
+    {
+        transform.position = Spawn;
+    }
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButton("Jump") == false)
+        if (Input.GetButton("Jump") == false || rb.velocity.y < 0)
         {
+            rb.gravityScale = 5;
             is_pressed = false;
         }
-        if(Input.GetButton("Jump") && is_pressed == false && jump_count != 0)
+        else
+            rb.gravityScale = 2.5f;
+        if(rb.velocity.y < 2f && rb.velocity.y > 0 && !isGrounded())
+        {
+            rb.gravityScale = 1.5f;
+        }
+        if (Input.GetButton("Jump") && is_pressed == false && jump_count != 0)
         {
             is_pressed = true;
             in_air = true;
@@ -39,8 +60,11 @@ public class movement : MonoBehaviour
         {
             in_air = false;
             is_pressed = false;
-            if(jump_count == 0 && jcounter != 1)
-                jump_count+=jcounter;
+            if (jump_count == 0 && jcounter != 1)
+            {
+                jump_count += jcounter;
+                jcounter--;
+            }
             else
                 jump_count++;
         }
@@ -52,7 +76,42 @@ public class movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        
+        
+        if(curr_speed > speed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+        }
+        if(in_air && curr_speed < speed)
+        {
+            curr_speed += acceleration;
+            rb.velocity = new Vector2(rb.velocity.x + (acceleration * horizontal)*.75f, rb.velocity.y);
+        }
+        if(rb.velocity.x > 8f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x - decelerate, rb.velocity.y);
+        }
+        else if (rb.velocity.x < -8f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x + decelerate, rb.velocity.y);
+        }
+        else if (horizontal == 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * .8f, rb.velocity.y);
+            curr_speed = 0; 
+            acceleration = .3f;
+        }
+        else if (curr_speed < speed)
+        {
+            curr_speed += acceleration;
+            rb.velocity = new Vector2(rb.velocity.x+acceleration*horizontal, rb.velocity.y);
+            acceleration += .1f;
+        }
+        else if (curr_speed > speed)
+        {
+            Debug.Log(rb.velocity.x);
+            rb.velocity = new Vector2(curr_speed*horizontal, rb.velocity.y);
+        }
     }
 
     private bool isGrounded()

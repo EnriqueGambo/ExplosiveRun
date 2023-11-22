@@ -14,7 +14,7 @@ public class SpeedBoost : MonoBehaviour
     void Pickup(Collider2D Player)
     {
         movement stats = Player.GetComponent<movement>();
-        stats.speed *= (float)1.5; 
+        stats.curr_speed = stats.speed * 2f; 
         Destroy(gameObject);
     }
 }
