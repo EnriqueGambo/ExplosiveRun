@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
 public class movement : MonoBehaviour
 {
     private float horizontal;
@@ -18,10 +18,9 @@ public class movement : MonoBehaviour
     private bool is_pressed = false;
     private bool in_air = false;
     private float decelerate = .5f;
-    private float flip = 0;
 
     public int armor;
-    public Vector2 Spawn;
+    public string spawn_file;
 
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
@@ -31,7 +30,18 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        transform.position = Spawn;
+        float x, y;
+        StreamReader sr = new StreamReader("Assets/Scripts/Data/" + spawn_file);
+        sr.BaseStream.Seek(0, SeekOrigin.Begin);
+
+        string line = sr.ReadLine();
+        x = float.Parse(line);
+        line = sr.ReadLine();
+        y = float.Parse(line);
+
+        transform.position = new Vector2(x, y);
+
+        sr.Close();
     }
     void Update()
     {
@@ -109,7 +119,6 @@ public class movement : MonoBehaviour
         }
         else if (curr_speed > speed)
         {
-            Debug.Log(rb.velocity.x);
             rb.velocity = new Vector2(curr_speed*horizontal, rb.velocity.y);
         }
     }
