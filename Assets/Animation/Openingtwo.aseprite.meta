@@ -1,0 +1,584 @@
+fileFormatVersion: 2
+guid: 89ae7dce0931fab45823d9321c4aeec9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Openingtwo_Frame_0
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 540
+      height: 540
+    spriteID: 50e3f4b2c2ef67d48914be8872391339
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Openingtwo_Frame_1
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 552
+      width: 540
+      height: 540
+    spriteID: 35808cc8b9a7fce45bfd63e9d9aec9ed
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 552}
+  - name: Openingtwo_Frame_2
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1100
+      width: 540
+      height: 540
+    spriteID: 940b440495dd3c845a76de5934e5c7e0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1100}
+  - name: Openingtwo_Frame_3
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1648
+      width: 540
+      height: 540
+    spriteID: 892fb19291a2a3046ba27724e9c22aed
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1648}
+  - name: Openingtwo_Frame_4
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2196
+      width: 540
+      height: 540
+    spriteID: 15039dd7f67bf8446a6d27b22995b224
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 2196}
+  - name: Openingtwo_Frame_5
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2744
+      width: 540
+      height: 540
+    spriteID: 88f9eb79d04e0ab4687ec39e49eb9a03
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 2744}
+  - name: Openingtwo_Frame_6
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3292
+      width: 540
+      height: 540
+    spriteID: 251d31274b2b39047bf5cf2368e10950
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 3292}
+  - name: Openingtwo_Frame_7
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 4
+      width: 540
+      height: 540
+    spriteID: 6f24b6f7370fdf54eaac704939924c82
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 4}
+  - name: Openingtwo_Frame_8
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 552
+      width: 540
+      height: 540
+    spriteID: 7acdc21db6521ca4d8feb5d9040bc621
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 552}
+  - name: Openingtwo_Frame_9
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 1100
+      width: 540
+      height: 540
+    spriteID: 26e69feb0212ed64b9239c0099fb7d70
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 1100}
+  - name: Openingtwo_Frame_10
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 1648
+      width: 540
+      height: 540
+    spriteID: fd16864c90ac65048a376dae33425ef2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 1648}
+  - name: Openingtwo_Frame_11
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 2196
+      width: 540
+      height: 540
+    spriteID: 3a716c2dba445e749af8cb1a8ed12aa5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 2196}
+  - name: Openingtwo_Frame_12
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 2744
+      width: 540
+      height: 540
+    spriteID: 4e515d67152604e439fafc079be5f67c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 2744}
+  - name: Openingtwo_Frame_13
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 552
+      y: 3292
+      width: 540
+      height: 540
+    spriteID: f055cfbb4a1207a45aeace6a5c32cdf7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 552, y: 3292}
+  - name: Openingtwo_Frame_14
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1100
+      y: 4
+      width: 540
+      height: 540
+    spriteID: 6656b709fc975584ea742ea2accdb1d3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1100, y: 4}
+  - name: Openingtwo_Frame_15
+    originalName: 
+    pivot: {x: 0.43333334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1100
+      y: 552
+      width: 540
+      height: 540
+    spriteID: f868f6d2cc0db7a41b0188b59dc7c49d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1100, y: 552}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 546605004
+    name: Openingtwo
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Openingtwo_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 50e3f4b2c2ef67d48914be8872391339
+    - name: Openingtwo_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 35808cc8b9a7fce45bfd63e9d9aec9ed
+    - name: Openingtwo_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 940b440495dd3c845a76de5934e5c7e0
+    - name: Openingtwo_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 892fb19291a2a3046ba27724e9c22aed
+    - name: Openingtwo_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 15039dd7f67bf8446a6d27b22995b224
+    - name: Openingtwo_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 88f9eb79d04e0ab4687ec39e49eb9a03
+    - name: Openingtwo_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 251d31274b2b39047bf5cf2368e10950
+    - name: Openingtwo_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 6f24b6f7370fdf54eaac704939924c82
+    - name: Openingtwo_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 7acdc21db6521ca4d8feb5d9040bc621
+    - name: Openingtwo_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 26e69feb0212ed64b9239c0099fb7d70
+    - name: Openingtwo_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: fd16864c90ac65048a376dae33425ef2
+    - name: Openingtwo_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 3a716c2dba445e749af8cb1a8ed12aa5
+    - name: Openingtwo_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 4e515d67152604e439fafc079be5f67c
+    - name: Openingtwo_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: f055cfbb4a1207a45aeace6a5c32cdf7
+    - name: Openingtwo_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: 6656b709fc975584ea742ea2accdb1d3
+    - name: Openingtwo_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 200
+        y: 0
+        width: 540
+        height: 540
+      spriteId: f868f6d2cc0db7a41b0188b59dc7c49d
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 868, y: 540}
