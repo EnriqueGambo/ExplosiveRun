@@ -12,13 +12,21 @@ public class movement : MonoBehaviour
     private bool isRight = true;
     private bool is_pressed = false;
     private bool in_air = false;
+    public int armor;
+    public Vector2 Spawn;
 
-    [SerializeField] private Rigidbody2D rb;
+    private float acceleration = .01f;
+
+    [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
     [SerializeField] private LayerMask groundLayer;
     // Start is called before the first frame update
 
     // Update is called once per frame
+    void Start()
+    {
+        transform.position = Spawn;
+    }
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -39,8 +47,11 @@ public class movement : MonoBehaviour
         {
             in_air = false;
             is_pressed = false;
-            if(jump_count == 0 && jcounter != 1)
-                jump_count+=jcounter;
+            if (jump_count == 0 && jcounter != 1)
+            {
+                jump_count += jcounter;
+                jcounter--;
+            }
             else
                 jump_count++;
         }
