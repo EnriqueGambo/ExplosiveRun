@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
+    [SerializeField] private Collider2D Player;
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -16,6 +17,6 @@ public class Death : MonoBehaviour
     }
     private void Reset()
     {
-        SceneManager.LoadScene("ExplosiveRun");
+        SceneManager.LoadSceneAsync("ExplosiveRun");
     }
 }
