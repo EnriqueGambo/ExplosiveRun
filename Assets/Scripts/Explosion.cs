@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 using UnityEngine.SceneManagement;
 
 public class Explosion : MonoBehaviour
@@ -44,23 +43,19 @@ public class Explosion : MonoBehaviour
 
         if(Physics2D.OverlapCircle(upcheck.position, 0.2f, playLayer))
         {
-            Vector2 change = new Vector2(0, power);
             force.velocity = new Vector2(force.velocity.x, power);
         }
         else if (Physics2D.OverlapCircle(downcheck.position, 0.2f, playLayer))
         {
-            Vector2 change = new Vector2(0, -power);
             force.velocity = new Vector2(force.velocity.x, -power);
         }
         else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, playLayer))
         {
-            Vector2 change = new Vector2(power, 0);
             force.velocity = new Vector2(power, force.velocity.y);
         }
         else if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, playLayer))
         {
-            Vector2 change = new Vector2(-power, 0);
-            force.AddForce(change);
+            force.velocity = new Vector2(-power, force.velocity.y);
         }
     }
 }
