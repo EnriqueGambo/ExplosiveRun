@@ -61,19 +61,19 @@ public class Managment : MonoBehaviour
             token = data.token_count;
             if (level[0] == false)
             {
-                StartCoroutine(waitSec(3,gameObject));
+                StartCoroutine(waitSec(3,gameObject,true));
                 
             }
             else
             {
-                SceneManager.LoadScene(1);
+                StartCoroutine(waitSec(5, gameObject, false));
 
 
             }
         }
         else
         {
-            StartCoroutine (waitSec(3, gameObject));
+            StartCoroutine (waitSec(3, gameObject, true));
 
         }
     }
@@ -163,13 +163,21 @@ public class Managment : MonoBehaviour
         }
     }
 
-    IEnumerator waitSec(int sec, GameObject gameObject)
+    IEnumerator waitSec(int sec, GameObject gameObject, bool failed)
     {
-        gameObject.SetActive(true);
-        yield return new WaitForSeconds(sec);
-        setNewGame();
-        Save();
-        SceneManager.LoadScene(2);
+        if (failed == true)
+        {
+            gameObject.SetActive(true);
+            yield return new WaitForSeconds(sec);
+            setNewGame();
+            Save();
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            yield return new WaitForSeconds(sec);
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void levelCompleted()
