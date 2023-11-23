@@ -173,7 +173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5650272581094395186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c261ebfebbe145e4aa87463ba59d1e5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a806ac1540b31040bbd8d63fdcb5b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playCheck: {fileID: 7765919801411646078}
@@ -181,6 +181,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   Player: {fileID: 0}
+  spawn_file: spawn.txt
 --- !u!1 &7213529654742978837
 GameObject:
   m_ObjectHideFlags: 0

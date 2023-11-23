@@ -14,7 +14,7 @@ public class DoubleJump : MonoBehaviour
     void Pickup(Collider2D Player)
     {
         movement stats = Player.GetComponent<movement>();
-        stats.jcounter++;        
+        stats.jump_count++;        
         Destroy(gameObject);
     }
 }

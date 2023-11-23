@@ -12,7 +12,6 @@ public class movement : MonoBehaviour
 
     public float jump_power = 16f;
     public int jump_count = 1;
-    public int jcounter = 1;
 
     private bool isRight = true;
     private bool is_pressed = false;
@@ -70,13 +69,8 @@ public class movement : MonoBehaviour
         {
             in_air = false;
             is_pressed = false;
-            if (jump_count == 0 && jcounter != 1)
-            {
-                jump_count += jcounter;
-                jcounter--;
-            }
-            else
-                jump_count++;
+            
+            jump_count++;
         }
 
 
@@ -97,11 +91,11 @@ public class movement : MonoBehaviour
             curr_speed += acceleration;
             rb.velocity = new Vector2(rb.velocity.x + (acceleration * horizontal)*.75f, rb.velocity.y);
         }
-        if(rb.velocity.x > 8f)
+        if(rb.velocity.x > 13f)
         {
             rb.velocity = new Vector2(rb.velocity.x - decelerate, rb.velocity.y);
         }
-        else if (rb.velocity.x < -8f)
+        else if (rb.velocity.x < -13f)
         {
             rb.velocity = new Vector2(rb.velocity.x + decelerate, rb.velocity.y);
         }
