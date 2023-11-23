@@ -56,13 +56,13 @@ public class movement : MonoBehaviour
             rb.gravityScale = 2.5f;
         if(rb.velocity.y < 2f && rb.velocity.y > 0 && !isGrounded())
         {
-            rb.gravityScale = 1.5f;
+            rb.gravityScale = 2f;
         }
         if (Input.GetButton("Jump") && is_pressed == false && jump_count != 0)
         {
             is_pressed = true;
             in_air = true;
-            rb.velocity = new Vector2(rb.velocity.x, jump_power);
+            rb.velocity = new Vector2(rb.velocity.x*.9f, jump_power);
             jump_count--;
             
         }
