@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEditor.SearchService;
+//SearchService not in UnityEditor.
+//using UnityEditor.SearchService;
 using UnityEngine;
 
 public class Death : MonoBehaviour
