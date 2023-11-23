@@ -13,8 +13,8 @@ public class Armor : MonoBehaviour
     }
     void Pickup(Collider2D Player)
     {
-        Debug.Log("Armor Acquired");
-        
+        movement stats =  Player.GetComponent<movement>();
+        stats.armor++;
         Destroy(gameObject);
     }
 }

@@ -406,7 +406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1467972344416526231, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: armor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1467972344416526231, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: spawn_file
@@ -856,7 +856,7 @@ Transform:
   m_GameObject: {fileID: 684994843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 248.0812, y: 300.8227, z: -9.935815}
+  m_LocalPosition: {x: 200.89307, y: 243.77216, z: -9.948024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

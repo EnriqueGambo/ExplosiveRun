@@ -18,7 +18,7 @@ public class movement : MonoBehaviour
     private bool in_air = false;
     private float decelerate = .5f;
 
-    public int armor;
+    public int armor = 0;
     public string spawn_file;
 
     [SerializeField] public Rigidbody2D rb;
