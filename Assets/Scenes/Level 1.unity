@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 56823500}
   - component: {fileID: 56823499}
   - component: {fileID: 56823498}
+  - component: {fileID: 56823501}
   m_Layer: 5
   m_Name: LeftButton
   m_TagString: Untagged
@@ -204,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 56823499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1673931095}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: moveleft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &56823499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +256,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56823496}
   m_CullTransparentMesh: 1
+--- !u!114 &56823501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56823496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78852cfc667b20541a4745d43e43bbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: 0
 --- !u!1001 &97870814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -400,9 +426,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 2136635665}
     m_Modifications:
     - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
+      propertyPath: mobile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: spawn_file
       value: Level1.txt
       objectReference: {fileID: 0}
+    - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
+      propertyPath: jump_button
+      value: 
+      objectReference: {fileID: 662890275}
+    - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
+      propertyPath: directions.Array.data[0]
+      value: 
+      objectReference: {fileID: 56823498}
+    - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
+      propertyPath: directions.Array.data[1]
+      value: 
+      objectReference: {fileID: 1641993342}
     - target: {fileID: 1467972344416526231, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: armor
       value: 0
@@ -633,6 +675,7 @@ GameObject:
   - component: {fileID: 662890277}
   - component: {fileID: 662890276}
   - component: {fileID: 662890275}
+  - component: {fileID: 662890278}
   m_Layer: 5
   m_Name: JumpButton
   m_TagString: Untagged
@@ -702,7 +745,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 662890276}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1673931095}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: moveup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &662890276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +796,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662890273}
   m_CullTransparentMesh: 1
+--- !u!114 &662890278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662890273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78852cfc667b20541a4745d43e43bbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: 0
 --- !u!1 &684994843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,6 +1797,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1673931094}
     - target: {fileID: 102930251987458374, guid: a07ccfae40cc1cc46b60c3523c57282f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102930251987458374, guid: a07ccfae40cc1cc46b60c3523c57282f, type: 3}
       propertyPath: spawn_file
       value: Level1.txt
       objectReference: {fileID: 0}
@@ -1900,6 +1972,7 @@ GameObject:
   - component: {fileID: 1641993344}
   - component: {fileID: 1641993343}
   - component: {fileID: 1641993342}
+  - component: {fileID: 1641993345}
   m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
@@ -2008,6 +2081,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641993340}
   m_CullTransparentMesh: 1
+--- !u!114 &1641993345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641993340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78852cfc667b20541a4745d43e43bbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: 0
 --- !u!1 &1661799357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2186,17 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8104892781930396909, guid: b543b011398544e46b68d75e311478d1, type: 3}
   m_PrefabInstance: {fileID: 336116233}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1673931095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
+  m_PrefabInstance: {fileID: 336116233}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978b9bfa84a304844b419f0dba7902f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1686017565
 PrefabInstance:
   m_ObjectHideFlags: 0

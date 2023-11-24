@@ -6,6 +6,8 @@ using UnityEngine.Diagnostics;
 using System.IO;
 using System.Diagnostics;
 using UnityEngine.XR;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class movement : MonoBehaviour
 {
@@ -30,6 +32,14 @@ public class movement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform leftcheck;
     [SerializeField] private Transform rightcheck;
+    [SerializeField] private UnityEngine.UI.Button[] directions = null;
+    [SerializeField] private UnityEngine.UI.Button jump_button;
+
+    private Stopwatch sw = new Stopwatch();
+    private Stopwatch sw2 = new Stopwatch();
+    private bool walled = false;
+    public bool mobile;
+    private bool jump = false;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -48,14 +58,26 @@ public class movement : MonoBehaviour
 
         sr.Close();
     }
-
-    private Stopwatch sw = new Stopwatch();
-    private Stopwatch sw2 = new Stopwatch();
-    private bool walled = false;
+    
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        jump = Input.GetButton("Jump");
 
+        if (mobile)
+        {
+            ButtonHold jumpButton = jump_button.GetComponent<ButtonHold>();
+            jump = jumpButton.buttonPressed;
+
+            if (directions[0].GetComponent<ButtonHold>().buttonPressed) {
+                horizontal = -1;
+            }
+            else if (directions[1].GetComponent<ButtonHold>().buttonPressed)
+            {
+                horizontal = 1;
+            }
+        }
+        
         if(isWalled() && !isGrounded())
         {
             walled = true;
@@ -71,7 +93,7 @@ public class movement : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Jump") == false || rb.velocity.y < 0)
+        if (jump == false || rb.velocity.y < 0)
         {
             rb.gravityScale = 5;
             is_pressed = false;
@@ -82,7 +104,7 @@ public class movement : MonoBehaviour
         {
             rb.gravityScale = 2f;
         }
-        if (Input.GetButton("Jump") && is_pressed == false && jump_count != 0)
+        if (jump && is_pressed == false && jump_count != 0)
         {
             is_pressed = true;
             in_air = true;
@@ -182,9 +204,9 @@ public class movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.gravityScale = 0f;
 
-        if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer)  && Input.GetButton("Jump") && !is_pressed)
+        if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer)  && jump && !is_pressed)
             rb.velocity = new Vector2(-speed * .75f, jump_power);
-        if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, groundLayer) && Input.GetButton("Jump") && !is_pressed)
+        if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
             rb.velocity = new Vector2(speed * .75f, jump_power);
     }
 }
