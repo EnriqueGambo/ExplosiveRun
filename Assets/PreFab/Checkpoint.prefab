@@ -180,7 +180,7 @@ MonoBehaviour:
   playLayer:
     serializedVersion: 2
     m_Bits: 1
-  Player: {fileID: 0}
+  Player: {fileID: 8104892781930396909, guid: b543b011398544e46b68d75e311478d1, type: 3}
   spawn_file: spawn.txt
 --- !u!1 &7213529654742978837
 GameObject:
