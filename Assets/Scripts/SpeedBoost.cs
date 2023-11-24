@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collider)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.name == "Player")
         {
@@ -15,7 +15,6 @@ public class SpeedBoost : MonoBehaviour
     {
         movement stats = Player.GetComponent<movement>();
         stats.curr_speed = stats.speed * 2f; 
-        Destroy(gameObject);
     }
 }
 

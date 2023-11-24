@@ -11,7 +11,9 @@ public class TileAI : MonoBehaviour
     [SerializeField] private Collider2D[] checks;
     private bool has_touched = false;
     private Stopwatch sw = new Stopwatch();
-
+    Armor armor = new Armor();
+    SpeedBoost speedboost = new SpeedBoost();
+    DoubleJump doublejump = new DoubleJump();
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -52,6 +54,12 @@ public class TileAI : MonoBehaviour
         Quaternion rot = new Quaternion(0, 0, 180, 0);
         Instantiate(explosion, transform.position, rot);
         
+        if(event_collider.gameObject.name == "ArmorTile")
+            armor.OnTriggerEnter2D(player);
+        else if(event_collider.gameObject.name == "SpeedBoostTile")
+            speedboost.OnTriggerEnter2D(player);
+        else if(event_collider.gameObject.name == "DoubleJumpTile")
+            doublejump.OnTriggerEnter2D(player);
 
         Destroy(gameObject);
     }

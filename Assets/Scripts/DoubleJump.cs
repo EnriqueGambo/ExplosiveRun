@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoubleJump : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collider)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.name == "Player")
         {
@@ -15,6 +15,5 @@ public class DoubleJump : MonoBehaviour
     {
         movement stats = Player.GetComponent<movement>();
         stats.jump_count++;        
-        Destroy(gameObject);
     }
 }
