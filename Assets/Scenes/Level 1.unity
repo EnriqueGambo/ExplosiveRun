@@ -659,6 +659,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7146257555983453804, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
+      propertyPath: powers.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7146257555983453804, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
       propertyPath: powers.Array.data[2]
       value: 1
       objectReference: {fileID: 0}
@@ -1826,7 +1830,7 @@ PrefabInstance:
       objectReference: {fileID: 1673931094}
     - target: {fileID: 102930251987458374, guid: a07ccfae40cc1cc46b60c3523c57282f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 102930251987458374, guid: a07ccfae40cc1cc46b60c3523c57282f, type: 3}
       propertyPath: spawn_file

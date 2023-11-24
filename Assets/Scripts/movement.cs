@@ -32,7 +32,7 @@ public class movement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform leftcheck;
     [SerializeField] private Transform rightcheck;
-    [SerializeField] private UnityEngine.UI.Button[] directions = null;
+    [SerializeField] private UnityEngine.UI.Button[] directions = new UnityEngine.UI.Button[2];
     [SerializeField] private UnityEngine.UI.Button jump_button;
 
     private Stopwatch sw = new Stopwatch();
