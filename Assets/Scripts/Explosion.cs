@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,13 +13,18 @@ public class Explosion : MonoBehaviour
     [SerializeField] private Transform leftcheck;
     [SerializeField] private Transform rightcheck;
     [SerializeField] private LayerMask playLayer;
-    [SerializeField] private Collider2D Player;
+    [SerializeField] public Collider2D Player;
+    [SerializeField] public Animator anim;
+    private string[] options = {"New Animation", "Right", "Left", "Down" };
+    public int choice = 0;
 
+    public bool stays;
     // Start is called before the first frame update
     // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-       
+        anim.Play(options[choice]);
     }
     void OnTriggerEnter2D()
     {
@@ -26,6 +32,16 @@ public class Explosion : MonoBehaviour
         {
             Attack();
         }
+    }
+
+    private Stopwatch sw = Stopwatch.StartNew();
+    void Update()
+    {
+        sw.Start();
+        if(sw.ElapsedMilliseconds > 100  && stays == false) {
+             Destroy(gameObject);
+        }
+
     }
     private void Attack()
     {
@@ -43,19 +59,19 @@ public class Explosion : MonoBehaviour
 
         if(Physics2D.OverlapCircle(upcheck.position, 0.2f, playLayer))
         {
-            force.velocity = new Vector2(force.velocity.x, power);
+            force.velocity = new Vector2(force.velocity.x, -power);
         }
         else if (Physics2D.OverlapCircle(downcheck.position, 0.2f, playLayer))
         {
-            force.velocity = new Vector2(force.velocity.x, -power);
+            force.velocity = new Vector2(force.velocity.x, power);
         }
         else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, playLayer))
         {
-            force.velocity = new Vector2(power, force.velocity.y);
+            force.velocity = new Vector2(-power, force.velocity.y);
         }
         else if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, playLayer))
         {
-            force.velocity = new Vector2(-power, force.velocity.y);
+            force.velocity = new Vector2(power, force.velocity.y);
         }
     }
 }
