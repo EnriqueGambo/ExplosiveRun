@@ -427,7 +427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: mobile
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: spawn_file
@@ -612,11 +612,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6681199533368530490, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 202.82767
+      value: 199.97
       objectReference: {fileID: 0}
     - target: {fileID: 6681199533368530490, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 185.62259
+      value: 182.56
       objectReference: {fileID: 0}
     - target: {fileID: 6681199533368530490, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -910,7 +910,7 @@ Transform:
   m_GameObject: {fileID: 684994843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 200.00006, y: 190, z: -9.948024}
+  m_LocalPosition: {x: 222.45819, y: 243.6842, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1955,7 +1955,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1673931092}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
