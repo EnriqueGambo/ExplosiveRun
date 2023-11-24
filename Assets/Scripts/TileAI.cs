@@ -12,9 +12,6 @@ public class TileAI : MonoBehaviour
     private bool has_touched = false;
     public bool[] powers = new bool[3];
     private Stopwatch sw = new Stopwatch();
-    Armor armor = new Armor();
-    SpeedBoost speedboost = new SpeedBoost();
-    DoubleJump doublejump = new DoubleJump();
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -50,7 +47,7 @@ public class TileAI : MonoBehaviour
         if (powers[0])
             player.GetComponent<movement>().armor++;
         if (powers[1])
-            speedboost.OnTriggerEnter2D(player);
+            player.GetComponent<movement>().speed*=(float)1.5;
         if (powers[2])
             player.GetComponent<movement>().jump_count++;
         Explosion exp = explosion.GetComponent<Explosion>();
