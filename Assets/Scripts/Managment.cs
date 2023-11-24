@@ -52,7 +52,18 @@ public class Managment : MonoBehaviour
 
     public void Load()
     {
-        GameObject gameObject =GameObject.Find("FailedLoad");
+        if (GameObject.Find("Openingtwo")!= null)
+        {
+            Text text =GameObject.Find("Text").GetComponent<Text>();
+            text.text = "WORKS";
+        }
+        else
+        {
+            Text text = GameObject.Find("Text").GetComponent<Text>();
+            text.text = "DOESNT";
+       
+        }
+        GameObject gameObject = GameObject.Find("FailedLoad");
         gameObject.SetActive(false);
         GameData data = SaveGame.loadGame();
         if (data != null)
@@ -62,19 +73,19 @@ public class Managment : MonoBehaviour
             token = data.token_count;
             if (level[0] == false)
             {
-                StartCoroutine(waitSec(3,gameObject,true));
+                StartCoroutine(waitSec(3,gameObject,2));
                 
             }
             else
             {
-                StartCoroutine(waitSec(5, gameObject, false));
+                StartCoroutine(waitSec(5, gameObject, 1));
 
 
             }
         }
         else
         {
-            StartCoroutine (waitSec(3, gameObject, true));
+            StartCoroutine (waitSec(3, gameObject, 0));
 
         }
     }
@@ -164,9 +175,10 @@ public class Managment : MonoBehaviour
         }
     }
 
-    IEnumerator waitSec(int sec, GameObject gameObject, bool failed)
+    IEnumerator waitSec(int sec, GameObject gameObject, int status)
     {
-        if (failed == true)
+        //Load Failed
+        if (status == 2)
         {
             gameObject.SetActive(true);
             yield return new WaitForSeconds(sec);
@@ -174,10 +186,19 @@ public class Managment : MonoBehaviour
             Save();
             SceneManager.LoadScene(2);
         }
-        else
+        //Load Worked
+        else if (status == 1)
         {
             yield return new WaitForSeconds(sec);
             SceneManager.LoadScene(1);
+        }
+        //If any other issue just create a new game.
+        else
+        {
+            yield return new WaitForSeconds(sec);
+            setNewGame() ;
+            Save();
+            SceneManager.LoadScene(2);
         }
     }
 
