@@ -369,11 +369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8848135828017144429, guid: 61169e251430d4d1caeb2ced1d0707fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -649.68024
+      value: -665.7
       objectReference: {fileID: 0}
     - target: {fileID: 8848135828017144429, guid: 61169e251430d4d1caeb2ced1d0707fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.045616
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8848135828017144429, guid: 61169e251430d4d1caeb2ced1d0707fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -427,7 +427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: mobile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 724372032544777620, guid: b543b011398544e46b68d75e311478d1, type: 3}
       propertyPath: spawn_file
@@ -654,6 +654,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1673931094}
+    - target: {fileID: 7146257555983453804, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
+      propertyPath: powers.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7146257555983453804, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
+      propertyPath: powers.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8817872081926709092, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
       propertyPath: m_Name
       value: Platform-groundlayer
@@ -1291,18 +1299,34 @@ PrefabInstance:
     - target: {fileID: 582650554264443128, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1673931094}
     - target: {fileID: 582650554264443128, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
       propertyPath: curr_level
       value: Level 1
       objectReference: {fileID: 0}
     - target: {fileID: 3408183251019137418, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 36.1985
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408183251019137418, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3807591
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408183251019137418, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7123
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408183251019137418, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.52
+      value: -6.6624837
       objectReference: {fileID: 0}
     - target: {fileID: 3408183251019137418, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.13
+      value: -5.645799
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452087506801285405, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
+      propertyPath: m_Size.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8650824336189584287, guid: 7cf2abd5e8b99ba49b5bf374f853c9c3, type: 3}
       propertyPath: m_Name
@@ -1511,9 +1535,13 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1673931094}
+    - target: {fileID: 7146257555983453804, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
+      propertyPath: powers.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8817872081926709092, guid: a69bf25b708b94c64be8064f55c9ac6a, type: 3}
       propertyPath: m_Name
-      value: Platform-groundlayer
+      value: ArmorTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

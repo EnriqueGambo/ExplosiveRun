@@ -10,6 +10,7 @@ public class TileAI : MonoBehaviour
     [SerializeField] private GameObject explosion;
     [SerializeField] private Collider2D[] checks;
     private bool has_touched = false;
+    public bool[] powers = new bool[3];
     private Stopwatch sw = new Stopwatch();
     Armor armor = new Armor();
     SpeedBoost speedboost = new SpeedBoost();
@@ -46,6 +47,12 @@ public class TileAI : MonoBehaviour
 
         if (bomb_timer.ElapsedMilliseconds < 150)
             return;
+        if (powers[0])
+            player.GetComponent<movement>().armor++;
+        if (powers[1])
+            speedboost.OnTriggerEnter2D(player);
+        if (powers[2])
+            player.GetComponent<movement>().jump_count++;
         Explosion exp = explosion.GetComponent<Explosion>();
         exp.Player = player;
         exp.choice = dir;
@@ -53,13 +60,6 @@ public class TileAI : MonoBehaviour
 
         Quaternion rot = new Quaternion(0, 0, 180, 0);
         Instantiate(explosion, transform.position, rot);
-        
-        if(event_collider.gameObject.name == "ArmorTile")
-            armor.OnTriggerEnter2D(player);
-        else if(event_collider.gameObject.name == "SpeedBoostTile")
-            speedboost.OnTriggerEnter2D(player);
-        else if(event_collider.gameObject.name == "DoubleJumpTile")
-            doublejump.OnTriggerEnter2D(player);
 
         Destroy(gameObject);
     }

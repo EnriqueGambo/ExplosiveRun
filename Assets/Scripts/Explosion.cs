@@ -50,7 +50,7 @@ public class Explosion : MonoBehaviour
         if (stats.armor > 0)
             propel();
         else
-            SceneManager.LoadScene("ExplosiveRun");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private void propel()
     {
