@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -52,41 +53,36 @@ public class Managment : MonoBehaviour
 
     public void Load()
     {
-        if (GameObject.Find("Openingtwo")!= null)
-        {
-            Text text =GameObject.Find("Text").GetComponent<Text>();
-            text.text = "WORKS";
-        }
-        else
-        {
-            Text text = GameObject.Find("Text").GetComponent<Text>();
-            text.text = "DOESNT";
-       
-        }
         GameObject gameObject = GameObject.Find("FailedLoad");
         gameObject.SetActive(false);
-        GameData data = SaveGame.loadGame();
-        if (data != null)
+        try
         {
-            level = data.level;
-            time = data.time;
-            token = data.token_count;
-            if (level[0] == false)
+            GameData data = SaveGame.loadGame();
+            if (data != null)
             {
-                StartCoroutine(waitSec(3,gameObject,2));
-                
+                level = data.level;
+                time = data.time;
+                token = data.token_count;
+                if (level[0] == false)
+                {
+                    StartCoroutine(waitSec(2, gameObject, 2));
+
+                }
+                else
+                {
+                    StartCoroutine(waitSec(1, gameObject, 1));
+                }
             }
             else
             {
-                StartCoroutine(waitSec(5, gameObject, 1));
-
+                StartCoroutine(waitSec(2, gameObject, 0));
 
             }
         }
-        else
+        catch (Exception e)
         {
-            StartCoroutine (waitSec(3, gameObject, 0));
-
+            Debug.LogException(e);
+            StartCoroutine(waitSec(3, gameObject, 2));
         }
     }
 
@@ -98,13 +94,6 @@ public class Managment : MonoBehaviour
             Load();
         }
 
-    }
-
-    public void Update()
-    {
-        //currently one secne before levels.
-        int current = SceneManager.GetActiveScene().buildIndex -1;
-     
     }
 
     public void ContinueLvl()
@@ -177,6 +166,11 @@ public class Managment : MonoBehaviour
 
     IEnumerator waitSec(int sec, GameObject gameObject, int status)
     {
+        String open_string = "Loading .";
+        Text open_text =GameObject.Find("TextOpen").GetComponent<Text>();
+        yield return new WaitForSeconds(.6f);
+        open_text.text = open_string;
+        open_string = open_string + " .";
         //Load Failed
         if (status == 2)
         {
@@ -189,6 +183,8 @@ public class Managment : MonoBehaviour
         //Load Worked
         else if (status == 1)
         {
+            yield return new WaitForSeconds(.6f);
+            open_text.text = open_string;
             yield return new WaitForSeconds(sec);
             SceneManager.LoadScene(1);
         }
@@ -201,6 +197,7 @@ public class Managment : MonoBehaviour
             SceneManager.LoadScene(2);
         }
     }
+
 
     public void levelCompleted()
     {
