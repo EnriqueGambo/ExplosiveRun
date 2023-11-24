@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private Transform playCheck;
     [SerializeField] private LayerMask playLayer;
     [SerializeField] private Collider2D Player;
+    [SerializeField] private GameObject explosion;
 
     public string spawn_file;
 
@@ -36,8 +37,20 @@ public class Checkpoint : MonoBehaviour
             explode();
     }
 
+    private Stopwatch bomb_timer = new Stopwatch();
     private void explode()
     {
+        bomb_timer.Start();
+
+        if (bomb_timer.ElapsedMilliseconds < 150)
+            return;
+        Explosion exp = explosion.GetComponent<Explosion>();
+        exp.Player = Player;
+        exp.choice = 0;
+        exp.stays = false;
+
+        Quaternion rot = new Quaternion(0, 0, 180, 0);
+        Instantiate(explosion, transform.position, rot);
         Destroy(gameObject);
     }
     private bool Contact()

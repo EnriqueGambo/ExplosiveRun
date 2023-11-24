@@ -2,7 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using System.IO;
+using System.Diagnostics;
+using UnityEngine.XR;
+
 public class movement : MonoBehaviour
 {
     private float horizontal;
@@ -16,7 +20,7 @@ public class movement : MonoBehaviour
     private bool isRight = true;
     private bool is_pressed = false;
     private bool in_air = false;
-    private float decelerate = .5f;
+    private float decelerate = .25f;
 
     public int armor = 0;
     public string spawn_file;
@@ -24,6 +28,8 @@ public class movement : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform leftcheck;
+    [SerializeField] private Transform rightcheck;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -42,9 +48,28 @@ public class movement : MonoBehaviour
 
         sr.Close();
     }
+
+    private Stopwatch sw = new Stopwatch();
+    private Stopwatch sw2 = new Stopwatch();
+    private bool walled = false;
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        if(isWalled() && !isGrounded())
+        {
+            walled = true;
+            Wall_Jump();
+        }
+        else if(walled)
+        {
+            sw2.Start();
+            if(sw2.ElapsedMilliseconds > 200)
+            {
+                sw2.Restart();
+                walled = false;
+            }
+        }
 
         if (Input.GetButton("Jump") == false || rb.velocity.y < 0)
         {
@@ -72,24 +97,26 @@ public class movement : MonoBehaviour
             
             jump_count++;
         }
-
-
+        if(rb.velocity.y < 0 && !in_air)
+        {
+            sw.Start();
+            if (sw.ElapsedMilliseconds > 1000)
+            {
+                in_air = true;
+                jump_count--;
+                sw.Restart();
+            }
+        }
 
         Flip();
     }
 
     private void FixedUpdate()
-    {
-        
-        
-        if(curr_speed > speed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
-        }
+    {    
         if(in_air && curr_speed < speed)
         {
             curr_speed += acceleration;
-            rb.velocity = new Vector2(rb.velocity.x + (acceleration * horizontal)*.75f, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x + (acceleration * horizontal)*.9f, rb.velocity.y);
         }
         if(rb.velocity.x > 13f)
         {
@@ -105,7 +132,7 @@ public class movement : MonoBehaviour
             curr_speed = 0; 
             acceleration = .3f;
         }
-        else if (curr_speed < speed)
+        else if (curr_speed < speed && !walled)
         {
             curr_speed += acceleration;
             rb.velocity = new Vector2(rb.velocity.x+acceleration*horizontal, rb.velocity.y);
@@ -113,13 +140,30 @@ public class movement : MonoBehaviour
         }
         else if (curr_speed > speed)
         {
-            rb.velocity = new Vector2(curr_speed*horizontal, rb.velocity.y);
+            if ((rb.velocity.x < 0) != (horizontal < 0))
+            {
+                rb.velocity = new Vector2(rb.velocity.x *.7f, rb.velocity.y);
+                curr_speed *= .7f;
+            }
+            else
+            {
+                rb.velocity = new Vector2(curr_speed * horizontal, rb.velocity.y);
+            }
         }
     }
 
     private bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundcheck.position, 0.2f, groundLayer);
+    }
+
+    private bool isWalled()
+    {
+        if(Physics2D.OverlapCircle(leftcheck.position, 0.2f, groundLayer) && horizontal < 0)
+            return true;
+        else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer) && horizontal > 0)
+            return true;
+        return false;
     }
 
     private void Flip()
@@ -131,5 +175,16 @@ public class movement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+    private void Wall_Jump()
+    {
+        if (rb.velocity.y < 0f)
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.gravityScale = 0f;
+
+        if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer)  && Input.GetButton("Jump") && !is_pressed)
+            rb.velocity = new Vector2(-speed * .75f, jump_power);
+        if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, groundLayer) && Input.GetButton("Jump") && !is_pressed)
+            rb.velocity = new Vector2(speed * .75f, jump_power);
     }
 }

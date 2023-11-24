@@ -11,7 +11,6 @@ public class TileAI : MonoBehaviour
     [SerializeField] private Collider2D[] checks;
     private bool has_touched = false;
     private Stopwatch sw = new Stopwatch();
-    private Stopwatch anim = new Stopwatch();
 
     // Start is called before the first frame update
 
@@ -38,10 +37,13 @@ public class TileAI : MonoBehaviour
             explode();
     }
 
+    private Stopwatch bomb_timer = new Stopwatch();
     private void explode()
     {
-        anim.Start();
+        bomb_timer.Start();
 
+        if (bomb_timer.ElapsedMilliseconds < 150)
+            return;
         Explosion exp = explosion.GetComponent<Explosion>();
         exp.Player = player;
         exp.choice = dir;
@@ -57,16 +59,12 @@ public class TileAI : MonoBehaviour
     {
         return event_collider.IsTouching(player);
     }
+
     private int direction()
     {
-        if (checks[0].IsTouching(player))
-            return 0;
-        else if (checks[1].IsTouching(player))
-            return 1;
-        else if (checks[2].IsTouching(player))
-            return 2;
-        if (checks[3].IsTouching(player))
-            return 3;
+        for(int i = 0; i < checks.Length; i++)
+            if (checks[i].IsTouching(player))
+                return i;
         return 0;
     }
 }
