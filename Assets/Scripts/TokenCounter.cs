@@ -7,7 +7,7 @@ public class TokenCounter : MonoBehaviour
 {
     public static TokenCounter instance;
 
-    public TMP_Text tokenText:
+    public TMP_Text tokenText;
     public int currentTokens = 0;
 
     void Awake()
