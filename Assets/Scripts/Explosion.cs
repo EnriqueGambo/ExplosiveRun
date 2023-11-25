@@ -43,13 +43,18 @@ public class Explosion : MonoBehaviour
         }
 
     }
+    private bool defended = false;
     private void Attack()
     {
         movement stats = Player.GetComponent<movement>();
 
         if (stats.armor > 0)
+        {
+            stats.armor--;
             propel();
-        else
+            defended = true;
+        }
+        else if(!defended)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private void propel()
@@ -63,7 +68,8 @@ public class Explosion : MonoBehaviour
         }
         else if (Physics2D.OverlapCircle(downcheck.position, 0.2f, playLayer))
         {
-            force.velocity = new Vector2(force.velocity.x, power);
+            force.velocity = new Vector2(force.velocity.x, power*1.4f);
+            Player.GetComponent<movement>().jump_count--;
         }
         else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, playLayer))
         {

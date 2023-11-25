@@ -13,7 +13,8 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private LayerMask playLayer;
     [SerializeField] private Collider2D Player;
     [SerializeField] private GameObject explosion;
-    
+    [SerializeField] private GameObject boom;
+
     public SpriteRenderer render;
     public Sprite newSprite;
 
@@ -57,6 +58,8 @@ public class Checkpoint : MonoBehaviour
 
         Quaternion rot = new Quaternion(0, 0, 180, 0);
         Instantiate(explosion, transform.position, rot);
+        Instantiate(boom, transform.position, new Quaternion(0, 0, 0, 0));
+
         Destroy(gameObject);
     }
     private bool Contact()

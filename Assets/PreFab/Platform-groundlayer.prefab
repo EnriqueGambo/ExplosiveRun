@@ -536,8 +536,11 @@ MonoBehaviour:
   event_collider: {fileID: 3222397776141079671}
   player: {fileID: 8104892781930396909, guid: b543b011398544e46b68d75e311478d1, type: 3}
   explosion: {fileID: 2348610777826043533, guid: ea363830ffb476c40b9a89804ee1bc28, type: 3}
+  boom: {fileID: 7052116063797097145, guid: cd7bc1620784b184db202eec7abd6669, type: 3}
+  side_boom: {fileID: 6943315122880313016, guid: e9da7fd6daf1497448cd1ccafc4e6738, type: 3}
   checks:
   - {fileID: 4349350668691652337}
   - {fileID: 6121243011521855168}
   - {fileID: 3380854564062234021}
   - {fileID: 3454969462405610224}
+  powers: 000000

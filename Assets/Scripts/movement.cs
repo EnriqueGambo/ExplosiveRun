@@ -64,6 +64,8 @@ public class movement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         jump = Input.GetButton("Jump");
 
+        if(jump_count < 0)
+            jump_count = 0;
         if (mobile)
         {
             ButtonHold jumpButton = jump_button.GetComponent<ButtonHold>();

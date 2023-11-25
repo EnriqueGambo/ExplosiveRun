@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 public class TileAI : MonoBehaviour
 {
     [SerializeField] private Collider2D event_collider;
     [SerializeField] private Collider2D player;
     [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject boom;
+    [SerializeField] private GameObject side_boom;
     [SerializeField] private Collider2D[] checks;
     private bool has_touched = false;
     public bool[] powers = new bool[3];
@@ -38,9 +42,33 @@ public class TileAI : MonoBehaviour
     }
 
     private Stopwatch bomb_timer = new Stopwatch();
+    private float change = .8f;
+    private bool set_off = false;
     private void explode()
     {
         bomb_timer.Start();
+        if (set_off) { }
+        else if (dir == 1)
+        {
+            Instantiate(side_boom, new Vector2(transform.position.x - change, transform.position.y), new Quaternion(0, 0, 1, 0));
+            set_off = true;
+        }
+        else if (dir == 2)
+        {
+            Instantiate(side_boom, new Vector2(transform.position.x + change, transform.position.y), new Quaternion(0, 0, 0, 0));
+            set_off = true;
+        }
+        else if (dir == 3)
+        {
+            Instantiate(boom, new Vector2(transform.position.x, transform.position.y + change), new Quaternion(0, 0, 1, 0));
+            set_off = true;
+        }
+        else
+        {
+            Instantiate(boom, new Vector2(transform.position.x, transform.position.y - change), new Quaternion(0, 0, 0, 0));
+            set_off = true;
+
+        }
 
         if (bomb_timer.ElapsedMilliseconds < 150)
             return;
@@ -55,8 +83,10 @@ public class TileAI : MonoBehaviour
         exp.choice = dir;
         exp.stays = false;
 
+
         Quaternion rot = new Quaternion(0, 0, 180, 0);
         Instantiate(explosion, transform.position, rot);
+        
 
         Destroy(gameObject);
     }
