@@ -5,12 +5,17 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UIElements;
 
+
+
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private Transform playCheck;
     [SerializeField] private LayerMask playLayer;
     [SerializeField] private Collider2D Player;
     [SerializeField] private GameObject explosion;
+    
+    public SpriteRenderer render;
+    public Sprite newSprite;
 
     public string spawn_file;
 
@@ -32,6 +37,7 @@ public class Checkpoint : MonoBehaviour
 
             movement stats = Player.GetComponent<movement>();
             has_touched = true;
+            changeCheckpointSprite();
         }
         else if (has_touched == true)
             explode();
@@ -56,5 +62,9 @@ public class Checkpoint : MonoBehaviour
     private bool Contact()
     {
         return Physics2D.OverlapCircle(playCheck.position, 0.2f, playLayer);
+    }
+    void changeCheckpointSprite()
+    {
+        render.sprite = newSprite;
     }
 }
