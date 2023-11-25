@@ -30,8 +30,9 @@ public class movement : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform leftcheck;
+    [SerializeField] private Transform lefcheck;
     [SerializeField] private Transform rightcheck;
+    [SerializeField] private Collider2D bumpcheck;
     [SerializeField] private UnityEngine.UI.Button[] directions = new UnityEngine.UI.Button[2];
     [SerializeField] private UnityEngine.UI.Button jump_button;
 
@@ -43,8 +44,13 @@ public class movement : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
+    private Ray ray;
+    private RaycastHit hit;
     void Start()
     {
+        hit = GetComponent<RaycastHit>();
+        ray = new Ray(transform.position, Vector2.down);
+        //ray.direction = new Vector2(1, -1);]
         float x, y;
         StreamReader sr = new StreamReader("Assets/Scripts/Data/" + spawn_file);
         sr.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -61,6 +67,13 @@ public class movement : MonoBehaviour
     
     void Update()
     {
+        ray.origin = new Vector3(0, 0);
+      
+       // RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, .5f, groundLayer);
+        if (Physics.Raycast(ray, out hit, 1f, groundLayer))
+        {
+            UnityEngine.Debug.Log("It hits");
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
         jump = Input.GetButton("Jump");
 
@@ -183,7 +196,8 @@ public class movement : MonoBehaviour
 
     private bool isWalled()
     {
-        if(Physics2D.OverlapCircle(leftcheck.position, 0.2f, groundLayer) && horizontal < 0)
+        LayerMask temp = groundLayer;
+        if(Physics2D.OverlapCircle(lefcheck.position, 0.2f, temp) && horizontal < 0)
             return true;
         else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer) && horizontal > 0)
             return true;
@@ -202,13 +216,13 @@ public class movement : MonoBehaviour
     }
     private void Wall_Jump()
     {
-        if (rb.velocity.y < 0f)
+        if (rb.velocity.y != 0f)
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.gravityScale = 0f;
 
         if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer)  && jump && !is_pressed)
             rb.velocity = new Vector2(-speed * .75f, jump_power);
-        if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
+        if (Physics2D.OverlapCircle(lefcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
             rb.velocity = new Vector2(speed * .75f, jump_power);
     }
 }
