@@ -201,7 +201,7 @@ public class Managment : MonoBehaviour
 
     public void levelCompleted()
     {
-        int current_level = SceneManager.GetActiveScene().buildIndex-1;
+        int current_level = SceneManager.GetActiveScene().buildIndex-2;
         LevelTimer levelTimer = GameObject.Find("TimerText (Legacy)").GetComponent<LevelTimer>();
         int timeMin = levelTimer.getMin();
         int timeSec = levelTimer.getSec();
@@ -215,6 +215,10 @@ public class Managment : MonoBehaviour
         if(tokencount > token[current_level])
         {
             token[current_level] = tokencount;
+        }
+        if(current_level < total_levels)
+        {
+            level[current_level + 1] = true;
         }
         Save();
        
