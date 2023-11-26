@@ -126,7 +126,7 @@ public class movement : MonoBehaviour
             
             jump_count++;
         }
-        UnityEngine.Debug.Log(jump_count);
+
         if (!isGrounded() && !already_jumped)
         {
             sw.Start();
@@ -228,9 +228,14 @@ public class movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.gravityScale = 0f;
 
-        if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
+        if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal > 0)
         {
             rb.velocity = new Vector2(-speed, jump_power*.5f);
+            is_bounce = true;
+        }
+        else if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal < 0)
+        {
+            rb.velocity = new Vector2(speed, jump_power * .5f);
             is_bounce = true;
         }
     }
