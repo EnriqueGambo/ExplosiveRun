@@ -91,6 +91,7 @@ public class movement : MonoBehaviour
             if(sw2.ElapsedMilliseconds > 200)
             {
                 sw2.Restart();
+                sw2.Stop();
                 walled = false;
             }
         }
@@ -135,8 +136,12 @@ public class movement : MonoBehaviour
                 in_air = true;
                 jump_count--;
                 sw.Restart();
+                sw.Stop();
             }
         }
+
+        if (zerograv)
+            stopfall();
 
         Flip();
     }
@@ -153,6 +158,7 @@ public class movement : MonoBehaviour
         if(Stopwatch.ElapsedMilliseconds > 200)
         {
             Stopwatch.Restart();
+            Stopwatch.Stop();
             is_bounce = false;
             acceleration = .3f;
         }
@@ -230,13 +236,31 @@ public class movement : MonoBehaviour
 
         if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal > 0)
         {
-            rb.velocity = new Vector2(-speed, jump_power*.5f);
+            rb.velocity = new Vector2(-speed, jump_power*.75f);
             is_bounce = true;
         }
         else if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal < 0)
         {
-            rb.velocity = new Vector2(speed, jump_power * .5f);
+            rb.velocity = new Vector2(speed, jump_power * .75f);
             is_bounce = true;
         }
+    }
+    private int time = 50;
+    private bool zerograv = false;
+    Stopwatch stop = new Stopwatch();
+    public void stopfall()
+    {
+        stop.Start();
+        rb.gravityScale = 0;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        zerograv = true;
+        if(stop.ElapsedMilliseconds > time) 
+        {
+            zerograv = false;
+            stop.Restart();
+            stop.Stop();
+            
+        }
+
     }
 }

@@ -82,7 +82,6 @@ public class TileAI : MonoBehaviour
         exp.choice = dir;
         exp.stays = false;
 
-
         Quaternion rot = new Quaternion(0, 0, 180, 0);
         Instantiate(explosion, transform.position, rot);
         

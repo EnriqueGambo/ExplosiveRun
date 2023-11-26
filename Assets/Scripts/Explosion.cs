@@ -8,10 +8,10 @@ public class Explosion : MonoBehaviour
 {
     private float power = 20f;
 
-    [SerializeField] private Transform upcheck;
-    [SerializeField] private Transform downcheck;
-    [SerializeField] private Transform leftcheck;
-    [SerializeField] private Transform rightcheck;
+    [SerializeField] private Collider2D upcheck;
+    [SerializeField] private Collider2D downcheck;
+    [SerializeField] private Collider2D leftcheck;
+    [SerializeField] private Collider2D rightcheck;
     [SerializeField] private LayerMask playLayer;
 
     [SerializeField] public Animator anim;
@@ -63,22 +63,24 @@ public class Explosion : MonoBehaviour
         movement stats = Player.GetComponent<movement>();
         Rigidbody2D force = stats.rb;
 
-        if(Physics2D.OverlapCircle(upcheck.position, 0.2f, playLayer))
+        if(Physics2D.IsTouchingLayers(upcheck, playLayer))
         {
             force.velocity = new Vector2(force.velocity.x, -power);
         }
-        else if (Physics2D.OverlapCircle(downcheck.position, 0.2f, playLayer))
+        else if (Physics2D.IsTouchingLayers(downcheck, playLayer))
         {
             force.velocity = new Vector2(force.velocity.x, power*1.4f);
             Player.GetComponent<movement>().jump_count--;
         }
-        else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, playLayer))
+        else if (Physics2D.IsTouchingLayers(rightcheck, playLayer))
         {
             force.velocity = new Vector2(-power, force.velocity.y);
+            stats.stopfall();
         }
-        else if (Physics2D.OverlapCircle(leftcheck.position, 0.2f, playLayer))
+        else if (Physics2D.IsTouchingLayers(leftcheck, playLayer))
         {
             force.velocity = new Vector2(power, force.velocity.y);
+            stats.stopfall();
         }
     }
 }
