@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 8104892781930396909, guid: b543b011398544e46b68d75e311478d1, type: 3}
-  curr_level: 
+  curr_level: Level3
 --- !u!1 &8650824336189584287
 GameObject:
   m_ObjectHideFlags: 0
