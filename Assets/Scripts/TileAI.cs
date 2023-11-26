@@ -70,7 +70,7 @@ public class TileAI : MonoBehaviour
 
         }
 
-        if (bomb_timer.ElapsedMilliseconds < 150)
+        if (bomb_timer.ElapsedMilliseconds < 200)
             return;
         if (powers[0])
             player.GetComponent<movement>().armor++;
