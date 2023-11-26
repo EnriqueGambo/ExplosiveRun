@@ -70,7 +70,7 @@ public class TileAI : MonoBehaviour
 
         }
 
-        if (bomb_timer.ElapsedMilliseconds < 150)
+        if (bomb_timer.ElapsedMilliseconds < 200)
             return;
         if (powers[0])
             player.GetComponent<movement>().armor++;
@@ -79,7 +79,6 @@ public class TileAI : MonoBehaviour
         if (powers[2])
             player.GetComponent<movement>().jump_count++;
         Explosion exp = explosion.GetComponent<Explosion>();
-        exp.Player = player;
         exp.choice = dir;
         exp.stays = false;
 

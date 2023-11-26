@@ -17,13 +17,24 @@ public class Checkpoint : MonoBehaviour
 
     public SpriteRenderer render;
     public Sprite newSprite;
+    public bool is_start, will_restart;
 
     public string spawn_file;
 
     private bool has_touched = false;
 
     // Start is called before the first frame update
-
+    private void Start()
+    {
+        if(is_start && will_restart)
+        {
+            StreamWriter sw = new StreamWriter("Assets/Scripts/Data/" + spawn_file);
+            float y_level = transform.position.y + 2;
+            string data = transform.position.x.ToString() + "\n" + y_level.ToString();
+            sw.WriteLine(data);
+            sw.Close();
+        }
+    }
     // Update is called once per frame
 
     void Update()
@@ -52,7 +63,6 @@ public class Checkpoint : MonoBehaviour
         if (bomb_timer.ElapsedMilliseconds < 150)
             return;
         Explosion exp = explosion.GetComponent<Explosion>();
-        exp.Player = Player;
         exp.choice = 0;
         exp.stays = false;
 

@@ -108,10 +108,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 996952089
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: de782104f9ec74222985d52893f9e7fe, type: 3}
   m_Color: {r: 1, g: 0.47338852, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &7890732447711473662
@@ -186,7 +186,6 @@ MonoBehaviour:
   playLayer:
     serializedVersion: 2
     m_Bits: 1
-  Player: {fileID: 0}
   anim: {fileID: 6796248150361949655}
   choice: 0
   stays: 0

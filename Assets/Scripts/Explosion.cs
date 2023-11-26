@@ -13,7 +13,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] private Transform leftcheck;
     [SerializeField] private Transform rightcheck;
     [SerializeField] private LayerMask playLayer;
-    [SerializeField] public Collider2D Player;
+
     [SerializeField] public Animator anim;
     private string[] options = {"New Animation", "Right", "Left", "Down" };
     public int choice = 0;
@@ -21,15 +21,16 @@ public class Explosion : MonoBehaviour
     public bool stays;
     // Start is called before the first frame update
     // Update is called once per frame
-
+    private Collider2D Player;
     private void Start()
     {
         anim.Play(options[choice]);
     }
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Player.gameObject.name == "Player")
+        if (collider.gameObject.name == "Player")
         {
+            Player = collider;
             Attack();
         }
     }
