@@ -19093,6 +19093,8 @@ MonoBehaviour:
   boom: {fileID: 7052116063797097145, guid: cd7bc1620784b184db202eec7abd6669, type: 3}
   render: {fileID: 307152935}
   newSprite: {fileID: 21300000, guid: bfbd23db40675466aaee0ce4c15c1619, type: 3}
+  is_start: 0
+  will_restart: 0
   spawn_file: Level2.txt
 --- !u!61 &307152934
 BoxCollider2D:
@@ -74491,6 +74493,8 @@ MonoBehaviour:
   boom: {fileID: 7052116063797097145, guid: cd7bc1620784b184db202eec7abd6669, type: 3}
   render: {fileID: 1178311728}
   newSprite: {fileID: 21300000, guid: bfbd23db40675466aaee0ce4c15c1619, type: 3}
+  is_start: 0
+  will_restart: 0
   spawn_file: Level2.txt
 --- !u!61 &1178311727
 BoxCollider2D:
@@ -103367,6 +103371,8 @@ MonoBehaviour:
   boom: {fileID: 7052116063797097145, guid: cd7bc1620784b184db202eec7abd6669, type: 3}
   render: {fileID: 1669241023}
   newSprite: {fileID: 21300000, guid: bfbd23db40675466aaee0ce4c15c1619, type: 3}
+  is_start: 1
+  will_restart: 1
   spawn_file: Level2.txt
 --- !u!61 &1669241022
 BoxCollider2D:
@@ -108296,7 +108302,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 703548060}
   - {fileID: 1422527929}
   - {fileID: 1672038996}
   - {fileID: 1543186131}
@@ -108305,6 +108310,7 @@ RectTransform:
   - {fileID: 1097773530}
   - {fileID: 690670659}
   - {fileID: 1461759427}
+  - {fileID: 703548060}
   - {fileID: 1583470522}
   - {fileID: 1951069641}
   - {fileID: 2122977974}
