@@ -33,6 +33,7 @@ public class Checkpoint : MonoBehaviour
             string data = transform.position.x.ToString() + "\n" + y_level.ToString();
             sw.WriteLine(data);
             sw.Close();
+            will_restart = false;
         }
     }
     // Update is called once per frame
