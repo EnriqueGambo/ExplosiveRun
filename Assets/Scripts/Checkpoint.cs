@@ -63,7 +63,6 @@ public class Checkpoint : MonoBehaviour
         if (bomb_timer.ElapsedMilliseconds < 150)
             return;
         Explosion exp = explosion.GetComponent<Explosion>();
-        exp.Player = Player;
         exp.choice = 0;
         exp.stays = false;
 

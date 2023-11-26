@@ -79,7 +79,6 @@ public class TileAI : MonoBehaviour
         if (powers[2])
             player.GetComponent<movement>().jump_count++;
         Explosion exp = explosion.GetComponent<Explosion>();
-        exp.Player = player;
         exp.choice = dir;
         exp.stays = false;
 

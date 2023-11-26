@@ -8,17 +8,13 @@ public class Get_Collider : MonoBehaviour
     private Collider2D sol;
     void OnTriggerEnter2D(Collider2D collider)
     {
-        foreach(string s in viable_tiles)
-        {
-            if(collider.gameObject.name == s)
-            {
-                sol = collider;
-                break;
-            }
-        }
+        if (collider != null)
+            sol = collider;
     }
-    public Collider2D answer()
+    public bool answer()
     {
-        return sol;
+        if(sol != null)
+            return true;
+        return false;
     }
 }

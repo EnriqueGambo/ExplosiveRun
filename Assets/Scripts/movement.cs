@@ -30,8 +30,7 @@ public class movement : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform lefcheck;
-    [SerializeField] private Transform rightcheck;
+    [SerializeField] private Transform wallcheck;
     [SerializeField] private UnityEngine.UI.Button[] directions = new UnityEngine.UI.Button[2];
     [SerializeField] private UnityEngine.UI.Button jump_button;
 
@@ -43,9 +42,9 @@ public class movement : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
+    private bool already_jumped;
     void Start()
     {
-        //ray.direction = new Vector2(1, -1);]
         float x, y;
         StreamReader sr = new StreamReader("Assets/Scripts/Data/" + spawn_file);
         sr.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -62,7 +61,6 @@ public class movement : MonoBehaviour
     
     void Update()
     { 
-       // RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, .5f, groundLayer);
         horizontal = Input.GetAxisRaw("Horizontal");
         jump = Input.GetButton("Jump");
 
@@ -97,10 +95,13 @@ public class movement : MonoBehaviour
             }
         }
 
+        if (is_bounce)
+            return;
+        if(!jump)
+            is_pressed = false;
         if (jump == false || rb.velocity.y < 0)
         {
             rb.gravityScale = 5;
-            is_pressed = false;
         }
         else
             rb.gravityScale = 2.5f;
@@ -108,14 +109,16 @@ public class movement : MonoBehaviour
         {
             rb.gravityScale = 2f;
         }
-        if (jump && is_pressed == false && jump_count != 0)
+        if (jump && is_pressed == false && jump_count != 0 && !is_bounce)
         {
             is_pressed = true;
             in_air = true;
             rb.velocity = new Vector2(rb.velocity.x*.9f, jump_power);
             jump_count--;
-            
+            already_jumped = true;
         }
+        if (isGrounded())
+            already_jumped = false;
         if (isGrounded() && in_air)
         {
             in_air = false;
@@ -123,10 +126,11 @@ public class movement : MonoBehaviour
             
             jump_count++;
         }
-        if(rb.velocity.y < 0 && !in_air)
+        UnityEngine.Debug.Log(jump_count);
+        if (!isGrounded() && !already_jumped)
         {
             sw.Start();
-            if (sw.ElapsedMilliseconds > 1000)
+            if (sw.ElapsedMilliseconds > 900)
             {
                 in_air = true;
                 jump_count--;
@@ -197,15 +201,13 @@ public class movement : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics2D.OverlapCircle(groundcheck.position, 0.2f, groundLayer);
+        
+        return Physics2D.OverlapCircle(groundcheck.position, .2f, groundLayer);
     }
 
     private bool isWalled()
-    {
-        LayerMask temp = groundLayer;
-        if(Physics2D.OverlapCircle(lefcheck.position, 0.2f, temp) && horizontal < 0)
-            return true;
-        else if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer) && horizontal > 0)
+    { 
+        if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && horizontal != 0)
             return true;
         return false;
     }
@@ -226,15 +228,9 @@ public class movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.gravityScale = 0f;
 
-        if (Physics2D.OverlapCircle(rightcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
+        if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
         {
             rb.velocity = new Vector2(-speed, jump_power*.5f);
-            is_bounce = true;
-            
-        }
-        if (Physics2D.OverlapCircle(lefcheck.position, 0.2f, groundLayer) && jump && !is_pressed)
-        {
-            rb.velocity = new Vector2(speed, jump_power*.5f);
             is_bounce = true;
         }
     }
