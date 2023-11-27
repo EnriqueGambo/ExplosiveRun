@@ -4099,6 +4099,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7670636564858985505, guid: 8cb9b932adced41098526d415b438a9a, type: 3}
+      propertyPath: mobile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7670636564858985505, guid: 8cb9b932adced41098526d415b438a9a, type: 3}
       propertyPath: jump_button
       value: 
       objectReference: {fileID: 662890275}
