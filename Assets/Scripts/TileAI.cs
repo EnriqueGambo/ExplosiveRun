@@ -75,7 +75,7 @@ public class TileAI : MonoBehaviour
         if (powers[0])
             player.GetComponent<movement>().armor++;
         if (powers[1])
-            player.GetComponent<movement>().speed*=(float)1.5;
+            player.GetComponent<movement>().speed*=2;
         if (powers[2])
             player.GetComponent<movement>().jump_count++;
         Explosion exp = explosion.GetComponent<Explosion>();
