@@ -15,5 +15,7 @@ public class Goal : MonoBehaviour
             //TokenManager.instance.ResetTokens();
             SceneManager.LoadScene(next_level);
         }
+        else if(next_level == "end")
+            SceneManager.LoadSceneAsync(1);
     }
 }

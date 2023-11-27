@@ -185,8 +185,8 @@ MonoBehaviour:
   boom: {fileID: 7052116063797097145, guid: cd7bc1620784b184db202eec7abd6669, type: 3}
   render: {fileID: 5521515153905759036}
   newSprite: {fileID: 21300000, guid: bfbd23db40675466aaee0ce4c15c1619, type: 3}
-  is_start: 0
-  will_restart: 1
+  is_start: 1
+  will_restart: 0
   spawn_file: Level3.txt
 --- !u!1 &7213529654742978837
 GameObject:
