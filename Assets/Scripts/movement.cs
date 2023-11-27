@@ -24,6 +24,8 @@ public class movement : MonoBehaviour
     private bool in_air = false;
     private float decelerate = .25f;
 
+    private float time;
+
     public int armor = 0;
     public string spawn_file;
 
@@ -79,8 +81,10 @@ public class movement : MonoBehaviour
                 horizontal = 1;
             }
         }
-        
-        if(isWalled() && !isGrounded())
+        if(stop)
+            StartCoroutine(stopfall(time));
+
+        if (isWalled() && !isGrounded())
         {
             walled = true;
             Wall_Jump();
@@ -140,9 +144,6 @@ public class movement : MonoBehaviour
             }
         }
 
-        if (zerograv)
-            stopfall();
-
         Flip();
     }
 
@@ -162,18 +163,21 @@ public class movement : MonoBehaviour
             is_bounce = false;
             acceleration = .3f;
         }
-      
+        if (stop)
+        {
+            return;
+        }
 
         if(in_air && curr_speed < speed)
         {
             curr_speed += acceleration;
             rb.velocity = new Vector2(rb.velocity.x + (acceleration * horizontal)*.9f, rb.velocity.y);
         }
-        if(rb.velocity.x > 13f)
+        if(rb.velocity.x > speed * 2f)
         {
             rb.velocity = new Vector2(rb.velocity.x - decelerate, rb.velocity.y);
         }
-        else if (rb.velocity.x < -13f)
+        else if (rb.velocity.x < -speed * 2f)
         {
             rb.velocity = new Vector2(rb.velocity.x + decelerate, rb.velocity.y);
         }
@@ -231,7 +235,7 @@ public class movement : MonoBehaviour
     private void Wall_Jump()
     {
         if (rb.velocity.y != 0f)
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.velocity = new Vector2(0f, 0f);
         rb.gravityScale = 0f;
 
         if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal > 0)
@@ -245,22 +249,21 @@ public class movement : MonoBehaviour
             is_bounce = true;
         }
     }
-    private int time = 50;
-    private bool zerograv = false;
-    Stopwatch stop = new Stopwatch();
-    public void stopfall()
+    public IEnumerator stopfall(float seconds)
     {
-        stop.Start();
+        UnityEngine.Debug.Log("Is active");
         rb.gravityScale = 0;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
-        zerograv = true;
-        if(stop.ElapsedMilliseconds > time) 
-        {
-            zerograv = false;
-            stop.Restart();
-            stop.Stop();
-            
-        }
+       
+        yield return new WaitForSeconds(seconds);
 
+        stop = false;
+
+    }
+    private bool stop = false;
+    public void wait(float seconds)
+    {
+        time = seconds;
+        stop = true;
     }
 }
