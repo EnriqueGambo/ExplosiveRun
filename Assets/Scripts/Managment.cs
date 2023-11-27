@@ -167,7 +167,8 @@ public class Managment : MonoBehaviour
         level[0] =true;
         for(int i = 1; i < total_levels ; i++)
         {
-            level[i] = false;
+            //changed true for testing.
+            level[i] = true;
         }
     }
 
