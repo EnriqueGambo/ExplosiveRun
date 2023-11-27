@@ -74,13 +74,14 @@ public class Explosion : MonoBehaviour
         }
         else if (Physics2D.IsTouchingLayers(rightcheck, playLayer))
         {
-            force.velocity = new Vector2(-power, force.velocity.y);
-            stats.wait(.25f);
+            force.velocity = new Vector2(-power, .39f);
+            stats.wait(.4f);
         }
         else if (Physics2D.IsTouchingLayers(leftcheck, playLayer))
         {
-            force.velocity = new Vector2(power, force.velocity.y);
-            stats.wait(.25f);
+            force.velocity = new Vector2(power, .39f);
+            stats.wait(.4f);
         }
     }
-}
+   
+} 

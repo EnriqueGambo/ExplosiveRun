@@ -114,7 +114,12 @@ public class movement : MonoBehaviour
         {
             rb.gravityScale = 2f;
         }
-        if (jump && is_pressed == false && jump_count != 0 && !is_bounce)
+        if(is_wall_jump && jump) { }
+        else 
+                is_wall_jump = false;
+
+    
+        if (jump && is_pressed == false && jump_count != 0 && !is_bounce && !is_wall_jump)
         {
             is_pressed = true;
             in_air = true;
@@ -232,33 +237,36 @@ public class movement : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
+    private bool is_wall_jump = false;
     private void Wall_Jump()
     {
         if (rb.velocity.y != 0f)
-            rb.velocity = new Vector2(0f, 0f);
+            rb.velocity = new Vector2(0f, .39f);
         rb.gravityScale = 0f;
 
         if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal > 0)
         {
-            rb.velocity = new Vector2(-speed, jump_power*.75f);
+            rb.velocity = new Vector2(-8f, jump_power*.75f);
             is_bounce = true;
+            is_wall_jump = true;
         }
         else if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal < 0)
         {
-            rb.velocity = new Vector2(speed, jump_power * .75f);
+            rb.velocity = new Vector2(8f, jump_power * .75f);
             is_bounce = true;
+            is_wall_jump = true;
         }
     }
     public IEnumerator stopfall(float seconds)
     {
         UnityEngine.Debug.Log("Is active");
-        rb.gravityScale = 0;
+        rb.gravityScale = -.1f;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
        
         yield return new WaitForSeconds(seconds);
 
         stop = false;
-
     }
     private bool stop = false;
     public void wait(float seconds)
