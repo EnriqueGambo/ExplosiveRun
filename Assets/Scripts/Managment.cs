@@ -12,11 +12,11 @@ using UnityEngine.UI;
 public class Managment : MonoBehaviour
 {
     public static Managment Instance;
-    public static int total_levels = 4;
+    public static int total_levels = 3;
     public static int secenes_before_levels = 2;
-    private bool[] level = { true, false, false, false };
-    private int[,] time = { { 999, 999 }, { 999, 999 }, { 999, 999 }, { 999, 999 } };
-    private int[] token = {0,0,0,0};
+    private bool[] level = { true, false, false};
+    private int[,] time = { { 999, 999 }, { 999, 999 }, { 999, 999 }};
+    private int[] token = {0,0,0};
 
 
     public bool[] getlevel()
@@ -141,6 +141,13 @@ public class Managment : MonoBehaviour
             textToken.text = "Token: " + token[i- 1].ToString();
 
         }
+        Text totalTextTime = GameObject.Find("TotalToken").GetComponent<Text>();
+        int totalToken = 0;
+        for(int i =0; i < total_levels; i++)
+        {
+            totalToken += token[i];
+        }
+        totalTextTime.text = "Total Tokens: " + totalToken;
 
     }
 
