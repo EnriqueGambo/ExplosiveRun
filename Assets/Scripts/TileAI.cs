@@ -63,7 +63,7 @@ public class TileAI : MonoBehaviour
             Instantiate(boom, new Vector2(transform.position.x, transform.position.y + change), new Quaternion(0, 0, 1, 0));
             set_off = true;
         }
-        else
+        else if(dir == 0)
         {
             Instantiate(boom, new Vector2(transform.position.x, transform.position.y - change), new Quaternion(0, 0, 0, 0));
             set_off = true;
@@ -84,7 +84,11 @@ public class TileAI : MonoBehaviour
 
         Quaternion rot = new Quaternion(0, 0, 180, 0);
         Instantiate(explosion, transform.position, rot);
-        
+
+        dir = 0;
+        change = .8f;
+        set_off = false;
+        has_touched = false;
 
         Destroy(gameObject);
     }

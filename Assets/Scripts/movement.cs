@@ -32,7 +32,7 @@ public class movement : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundcheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform wallcheck;
+    [SerializeField] private Collider2D wallcheck;
     [SerializeField] private UnityEngine.UI.Button[] directions = new UnityEngine.UI.Button[2];
     [SerializeField] private UnityEngine.UI.Button jump_button;
 
@@ -68,6 +68,8 @@ public class movement : MonoBehaviour
 
         if(jump_count < 0)
             jump_count = 0;
+        if(armor <  0)
+            armor = 0;
         if (mobile)
         {
             ButtonHold jumpButton = jump_button.GetComponent<ButtonHold>();
@@ -81,8 +83,12 @@ public class movement : MonoBehaviour
                 horizontal = 1;
             }
         }
-        if(stop)
-            StartCoroutine(stopfall(time));
+        if (stop)
+        {
+            stopfall(time);
+            return;
+        }
+            
 
         if (isWalled() && !isGrounded())
         {
@@ -94,7 +100,7 @@ public class movement : MonoBehaviour
             sw2.Start();
             if(sw2.ElapsedMilliseconds > 200)
             {
-                sw2.Restart();
+                sw2.Reset();
                 sw2.Stop();
                 walled = false;
             }
@@ -144,7 +150,7 @@ public class movement : MonoBehaviour
             {
                 in_air = true;
                 jump_count--;
-                sw.Restart();
+                sw.Reset();
                 sw.Stop();
             }
         }
@@ -163,7 +169,7 @@ public class movement : MonoBehaviour
         }
         if(Stopwatch.ElapsedMilliseconds > 200)
         {
-            Stopwatch.Restart();
+            Stopwatch.Reset();
             Stopwatch.Stop();
             is_bounce = false;
             acceleration = .3f;
@@ -173,7 +179,7 @@ public class movement : MonoBehaviour
             return;
         }
 
-        if(in_air && curr_speed < speed)
+        if(in_air && curr_speed < speed && horizontal != 0)
         {
             curr_speed += acceleration;
             rb.velocity = new Vector2(rb.velocity.x + (acceleration * horizontal)*.9f, rb.velocity.y);
@@ -222,7 +228,7 @@ public class movement : MonoBehaviour
 
     private bool isWalled()
     { 
-        if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && horizontal != 0)
+        if (Physics2D.IsTouchingLayers(wallcheck, groundLayer) && horizontal != 0)
             return true;
         return false;
     }
@@ -241,32 +247,38 @@ public class movement : MonoBehaviour
     private bool is_wall_jump = false;
     private void Wall_Jump()
     {
-        if (rb.velocity.y != 0f)
-            rb.velocity = new Vector2(0f, .39f);
+        rb.velocity = new Vector2(0f, .0f);
         rb.gravityScale = 0f;
 
-        if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal > 0)
+        if (Physics2D.IsTouchingLayers(wallcheck, groundLayer) && jump && !is_pressed && horizontal > 0)
         {
             rb.velocity = new Vector2(-8f, jump_power*.75f);
             is_bounce = true;
             is_wall_jump = true;
         }
-        else if (Physics2D.OverlapCircle(wallcheck.position, 0.2f, groundLayer) && jump && !is_pressed && horizontal < 0)
+        else if (Physics2D.IsTouchingLayers(wallcheck, groundLayer) && jump && !is_pressed && horizontal < 0)
         {
             rb.velocity = new Vector2(8f, jump_power * .75f);
             is_bounce = true;
             is_wall_jump = true;
         }
     }
-    public IEnumerator stopfall(float seconds)
+    Stopwatch sj = new Stopwatch();
+    public void stopfall(float seconds)
     {
+        sj.Start();
         UnityEngine.Debug.Log("Is active");
         rb.gravityScale = -.1f;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
        
-        yield return new WaitForSeconds(seconds);
-
-        stop = false;
+        
+        if(sj.ElapsedMilliseconds > time * 1000)
+        {
+            stop = false;
+            sj.Stop();
+            sj.Reset();
+        }
+        
     }
     private bool stop = false;
     public void wait(float seconds)

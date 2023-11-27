@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,20 +41,25 @@ public class Explosion : MonoBehaviour
     {
         sw.Start();
         if(sw.ElapsedMilliseconds > 100  && stays == false) {
+             defended = false;
+             choice = 0;
+             sw.Reset();
+             sw.Stop();
              Destroy(gameObject);
         }
 
     }
     private bool defended = false;
+    private bool is_propelled = false;
     private void Attack()
     {
         movement stats = Player.GetComponent<movement>();
 
-        if (stats.armor > 0)
+        if (stats.armor > 0 && !is_propelled)
         {
-            stats.armor--;
             propel();
             defended = true;
+            is_propelled= true;
         }
         else if(!defended)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -67,21 +73,26 @@ public class Explosion : MonoBehaviour
         {
             force.velocity = new Vector2(force.velocity.x, -power);
         }
-        else if (Physics2D.IsTouchingLayers(downcheck, playLayer))
+        if (Physics2D.IsTouchingLayers(downcheck, playLayer))
         {
             force.velocity = new Vector2(force.velocity.x, power*1.4f);
-            Player.GetComponent<movement>().jump_count--;
         }
-        else if (Physics2D.IsTouchingLayers(rightcheck, playLayer))
+        if (Physics2D.IsTouchingLayers(rightcheck, playLayer))
         {
             force.velocity = new Vector2(-power, .39f);
-            stats.wait(.4f);
+            stats.wait(.2f);
         }
-        else if (Physics2D.IsTouchingLayers(leftcheck, playLayer))
+        if (Physics2D.IsTouchingLayers(leftcheck, playLayer))
         {
             force.velocity = new Vector2(power, .39f);
-            stats.wait(.4f);
+            stats.wait(.2f);
         }
+        StartCoroutine(stoparmor(.01f, stats));
     }
-   
+    private IEnumerator stoparmor(float seconds, movement stats)
+    {
+        yield return new WaitForSeconds(seconds);
+        stats.armor--;
+    }
+
 } 
