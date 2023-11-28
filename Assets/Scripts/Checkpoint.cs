@@ -31,7 +31,7 @@ public class Checkpoint : MonoBehaviour
             stats.pos = transform.position;
             stats.started = true;
         }
-        UnityEngine.Debug.Log(Managment.Instance.Curr_checkpoint);
+
     }
     // Update is called once per frame
 
