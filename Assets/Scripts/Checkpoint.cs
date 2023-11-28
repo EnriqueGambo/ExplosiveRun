@@ -28,7 +28,7 @@ public class Checkpoint : MonoBehaviour
         if (checkpoint_num == Managment.Instance.getCurr_checkpoint())
         {
             movement stats = Player.GetComponent<movement>();
-            stats.pos = transform.position;
+            stats.pos = new Vector2(transform.position.x, transform.position.y + 2);
             stats.started = true;
         }
 
