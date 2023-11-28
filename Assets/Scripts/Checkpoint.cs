@@ -4,8 +4,8 @@ using System.Diagnostics;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UIElements;
-
-
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -17,23 +17,39 @@ public class Checkpoint : MonoBehaviour
 
     public SpriteRenderer render;
     public Sprite newSprite;
-    public bool is_start, will_restart;
+    public bool is_start;
 
     public string spawn_file;
+    private bool will_restart = false;
 
     private bool has_touched = false;
 
     // Start is called before the first frame update
     private void Start()
     {
-        if(is_start && will_restart)
+        if(is_start)
+        {
+            StreamReader sr = new StreamReader("Assets/Scripts/Data/" + spawn_file);
+            sr.ReadLine();
+            sr.ReadLine();
+            if (int.Parse(sr.ReadLine()) == 1)
+            {
+                will_restart = true;
+                UnityEngine.Debug.Log("It activates");
+            }
+            sr.Close();
+        }
+
+        if (will_restart)
         {
             StreamWriter sw = new StreamWriter("Assets/Scripts/Data/" + spawn_file);
             float y_level = transform.position.y + 2;
-            string data = transform.position.x.ToString() + "\n" + y_level.ToString();
+            string data = transform.position.x.ToString() + "\n" + y_level.ToString() + "\n0";
             sw.WriteLine(data);
             sw.Close();
-            will_restart = false;
+            StartCoroutine(moveplayer(.5f));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }
     }
     // Update is called once per frame
@@ -44,7 +60,7 @@ public class Checkpoint : MonoBehaviour
         {
             StreamWriter sw = new StreamWriter("Assets/Scripts/Data/" + spawn_file);
             float y_level = transform.position.y + 2;
-            string data = transform.position.x.ToString() + "\n" + y_level.ToString();
+            string data = transform.position.x.ToString() + "\n" + y_level.ToString() + "\n0";
             sw.WriteLine(data);
             sw.Close();
 
@@ -80,5 +96,12 @@ public class Checkpoint : MonoBehaviour
     void changeCheckpointSprite()
     {
         render.sprite = newSprite;
+    }
+    private IEnumerator moveplayer(float seconds)
+    {
+        GameObject obj = Player.GetComponent<GameObject>();
+        yield return new WaitForSeconds(seconds);
+        UnityEngine.Debug.Log("Why");
+        obj.transform.position = new Vector2(transform.position.x-30, transform.position.y + 2);
     }
 }
