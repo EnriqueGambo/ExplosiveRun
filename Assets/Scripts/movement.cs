@@ -46,12 +46,13 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     private bool already_jumped;
     public bool started;
+    public int up;
     void Update()
     { 
         if (started)
         {
             started = false;
-            transform.position = pos;
+            transform.position = new Vector2(pos.x, pos.y + up);
             UnityEngine.Debug.Log("Hello");
         }
         horizontal = Input.GetAxisRaw("Horizontal");

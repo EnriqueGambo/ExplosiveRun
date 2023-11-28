@@ -17,7 +17,7 @@ public class Managment : MonoBehaviour
     private bool[] level = { true, false, false};
     private int[,] time = { { 999, 999 }, { 999, 999 }, { 999, 999 }};
     private int[] token = {0,0,0};
-    public int Curr_checkpoint = 0;
+    private int Curr_checkpoint = 0;
 
 
     public bool[] getlevel()
