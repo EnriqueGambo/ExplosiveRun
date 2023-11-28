@@ -11,11 +11,13 @@ public class Goal : MonoBehaviour
     {
         if (collider.gameObject.name == "Player" && next_level != "end")
         {
-            //Managment.Instance.levelCompleted();
-            //TokenManager.instance.ResetTokens();
+            Managment.Instance.levelCompleted();
+            TokenManager.instance.ResetTokens();
             SceneManager.LoadScene(next_level);
         }
         else if(next_level == "end")
-            SceneManager.LoadSceneAsync(1);
+        Managment.Instance.levelCompleted();
+        TokenManager.instance.ResetTokens();
+        SceneManager.LoadSceneAsync(1);
     }
 }
