@@ -25,7 +25,7 @@ public class movement : MonoBehaviour
     private float decelerate = .25f;
 
     private float time;
-
+    public Vector2 pos;
     public int armor = 0;
     public string spawn_file;
 
@@ -45,24 +45,15 @@ public class movement : MonoBehaviour
 
     // Update is called once per frame
     private bool already_jumped;
-    void Start()
-    {
-        float x, y;
-        StreamReader sr = new StreamReader("Assets/Scripts/Data/" + spawn_file);
-        sr.BaseStream.Seek(0, SeekOrigin.Begin);
-
-        string line = sr.ReadLine();
-        x = float.Parse(line);
-        line = sr.ReadLine();
-        y = float.Parse(line);
-
-        transform.position = new Vector2(x, y);
-
-        sr.Close();
-    }
-    
+    public bool started;
     void Update()
     { 
+        if (started)
+        {
+            started = false;
+            transform.position = pos;
+            UnityEngine.Debug.Log("Hello");
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
         jump = Input.GetButton("Jump");
 

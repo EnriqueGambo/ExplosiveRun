@@ -18,39 +18,20 @@ public class Checkpoint : MonoBehaviour
     public SpriteRenderer render;
     public Sprite newSprite;
     public bool is_start;
-
-    public string spawn_file;
-    private bool will_restart = false;
+    public int checkpoint_num;
 
     private bool has_touched = false;
 
     // Start is called before the first frame update
     private void Start()
     {
-        if(is_start)
+        if (checkpoint_num == Managment.Instance.getCurr_checkpoint())
         {
-            StreamReader sr = new StreamReader("Assets/Scripts/Data/" + spawn_file);
-            sr.ReadLine();
-            sr.ReadLine();
-            if (int.Parse(sr.ReadLine()) == 1)
-            {
-                will_restart = true;
-                UnityEngine.Debug.Log("It activates");
-            }
-            sr.Close();
+            movement stats = Player.GetComponent<movement>();
+            stats.pos = transform.position;
+            stats.started = true;
         }
-
-        if (will_restart)
-        {
-            StreamWriter sw = new StreamWriter("Assets/Scripts/Data/" + spawn_file);
-            float y_level = transform.position.y + 2;
-            string data = transform.position.x.ToString() + "\n" + y_level.ToString() + "\n0";
-            sw.WriteLine(data);
-            sw.Close();
-            StartCoroutine(moveplayer(.5f));
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            
-        }
+        UnityEngine.Debug.Log(Managment.Instance.Curr_checkpoint);
     }
     // Update is called once per frame
 
@@ -58,13 +39,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (Contact())
         {
-            StreamWriter sw = new StreamWriter("Assets/Scripts/Data/" + spawn_file);
-            float y_level = transform.position.y + 2;
-            string data = transform.position.x.ToString() + "\n" + y_level.ToString() + "\n0";
-            sw.WriteLine(data);
-            sw.Close();
-
-            movement stats = Player.GetComponent<movement>();
+            Managment.Instance.setCur_checkpoint(checkpoint_num);
             has_touched = true;
             changeCheckpointSprite();
         }
@@ -96,12 +71,5 @@ public class Checkpoint : MonoBehaviour
     void changeCheckpointSprite()
     {
         render.sprite = newSprite;
-    }
-    private IEnumerator moveplayer(float seconds)
-    {
-        GameObject obj = Player.GetComponent<GameObject>();
-        yield return new WaitForSeconds(seconds);
-        UnityEngine.Debug.Log("Why");
-        obj.transform.position = new Vector2(transform.position.x-30, transform.position.y + 2);
     }
 }

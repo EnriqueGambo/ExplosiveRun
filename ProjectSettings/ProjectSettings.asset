@@ -137,7 +137,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   bundleVersion: 1.0
   preloadedAssets:
-  - {fileID: -850246021559742850, guid: fac05dfc73fd4454399100369ea15536, type: 2}
+  - {fileID: 8743917693655668577, guid: fac05dfc73fd4454399100369ea15536, type: 2}
   - {fileID: 11400000, guid: 37767e17df487544b83da82f7f0aaf45, type: 2}
   - {fileID: 11400000, guid: 1c3fc8e6e98138c4c9ddb818e58fa349, type: 2}
   metroInputSource: 0
@@ -750,11 +750,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: a37bb4e6-b54d-4219-9556-e5726875f2ff
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Explosive Run
+  organizationId: enriquegamboa
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
