@@ -110,7 +110,7 @@ public class Managment : MonoBehaviour
     public void ContinueLvl()
     {
         int i = 0;
-        while (level[i]== true)
+        while (i < 3 && level[i]== true)
         {
             i++;
         }
@@ -127,6 +127,7 @@ public class Managment : MonoBehaviour
 
     public void QuitGame()
     {
+        Save();
         Application.Quit();
     }
 
@@ -220,7 +221,12 @@ public class Managment : MonoBehaviour
 
     public void levelCompleted()
     {
+        
         int current_level = SceneManager.GetActiveScene().buildIndex-2;
+        if(current_level+1 < 3)
+        {
+            level[current_level + 1] = true;
+        }
         LevelTimer levelTimer = GameObject.Find("TimerText (Legacy)").GetComponent<LevelTimer>();
         int timeMin = levelTimer.getMin();
         int timeSec = levelTimer.getSec();
@@ -229,16 +235,16 @@ public class Managment : MonoBehaviour
             time[current_level, 0] = timeMin;
             time[current_level, 1] = timeSec;
         }
+        
         TokenCheck tokenCheck = GameObject.Find("Token1").GetComponent<TokenCheck>();
         int tokencount = tokenCheck.getToken();
         if(tokencount > token[current_level])
         {
             token[current_level] = tokencount;
         }
-        if(current_level < total_levels)
-        {
-            level[current_level + 1] = true;
-        }
+        
+        
+        
         Save();
        
 
