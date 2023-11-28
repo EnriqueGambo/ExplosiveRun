@@ -12,6 +12,7 @@ public class Options : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Managment.Instance.setCur_checkpoint(0);
         SceneManager.LoadSceneAsync(1);
     }
 
