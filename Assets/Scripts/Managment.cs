@@ -17,6 +17,7 @@ public class Managment : MonoBehaviour
     private bool[] level = { true, false, false};
     private int[,] time = { { 999, 999 }, { 999, 999 }, { 999, 999 }};
     private int[] token = {0,0,0};
+    public int Curr_checkpoint = 0;
 
 
     public bool[] getlevel()
@@ -32,6 +33,16 @@ public class Managment : MonoBehaviour
     public int[] gettoken()
     {
         return token;
+    }
+
+    public int getCurr_checkpoint()
+    {
+        return Curr_checkpoint;
+    }
+
+    public void setCur_checkpoint(int Cur_checkpoint)
+    {
+        this.Curr_checkpoint = Cur_checkpoint;
     }
 
     private void Awake()
