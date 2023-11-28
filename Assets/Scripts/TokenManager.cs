@@ -9,6 +9,7 @@ public class TokenManager : MonoBehaviour
     [SerializeField] private TMP_Text tokensDisplay;
 
     private int startingTokens = 0; // Variable to store the initial token amount
+    private int tokensAtDeath; // New variable to store tokens at the time of death
 
     private void Awake()
     {
@@ -36,9 +37,17 @@ public class TokenManager : MonoBehaviour
         ResetTokens(); // Call ResetTokens when setting starting tokens
     }
 
+    // Gameplay code or level manager script, when the player dies, you can call:
+    // TokenManager.instance.PlayerDied();
+    public void PlayerDied()
+    {
+        tokensAtDeath = tokens; // Store the current token count at the time of death
+        ResetTokens();
+    }
+
     //Gameplay code or level manager script, when the player dies, you can call:
     //TokenManager.instance.ResetTokens();
-    public void ResetTokens() 
+    public void ResetTokens()
     {
         tokens = startingTokens;
     }
@@ -47,5 +56,10 @@ public class TokenManager : MonoBehaviour
     {
         return tokens;
     }
-}
 
+    //Method to get the tokens at the time of death
+    public int getTokensAtDeath()
+    {
+        return tokensAtDeath;
+    }
+}

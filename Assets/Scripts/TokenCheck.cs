@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TokenCheck : MonoBehaviour
 {
     private TokenManager tokenManager; // Reference to TokenManager
+    private int tokensAtDeath;
     Color color = Color.white;
 
     // Start is called before the first frame update
@@ -77,15 +78,18 @@ public class TokenCheck : MonoBehaviour
         }
     }
 
-    // Add this method to get the token count
-    public int getToken()
-    {
-        return tokenManager.getToken();
-    }
-
     // Call this method when the player dies
     public void PlayerDied()
     {
+        tokensAtDeath = tokenManager.getTokensAtDeath();
         tokenManager.ResetTokens();
     }
+    
+    //Method to get the token count
+    public int getToken()
+    {
+        return tokenManager.getToken() + tokensAtDeath;
+    }
+
+
 }
