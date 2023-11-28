@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ExplosiveRun.sln"
+    "dotnet.defaultSolution": "Explosive Run.sln"
 }
