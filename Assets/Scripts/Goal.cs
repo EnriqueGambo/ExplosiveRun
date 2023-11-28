@@ -22,7 +22,7 @@ public class Goal : MonoBehaviour
             Managment.Instance.levelCompleted();
             TokenManager.instance.ResetTokens();
             Managment.Instance.setCur_checkpoint(0);
-            SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadScene(1);
         }
     }
 }
