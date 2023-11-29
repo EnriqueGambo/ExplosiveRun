@@ -242,11 +242,8 @@ public class Managment : MonoBehaviour
         {
             token[current_level] = tokencount;
         }
-        
-        
-        
-        Save();
+         Save();
        
-
     }
+
 }
