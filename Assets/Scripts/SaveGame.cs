@@ -9,12 +9,14 @@ public static class SaveGame
     {
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + "/explosive.rungame";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        using (FileStream stream = new FileStream(path, FileMode.Create))
+        {
 
-        GameData gamedata = new GameData(mangment);
+            GameData gamedata = new GameData(mangment);
 
-        bf.Serialize(stream, gamedata);
-        stream.Close();
+            bf.Serialize(stream, gamedata);
+            stream.Close();
+        }
     }
 
     public static GameData loadGame()
@@ -23,13 +25,14 @@ public static class SaveGame
         if(File.Exists(path))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            using (FileStream stream = new FileStream(path, FileMode.Open))
+            {
 
-            GameData gamedata = bf.Deserialize(stream) as GameData;
-            stream.Close();
+                GameData gamedata = bf.Deserialize(stream) as GameData;
+                stream.Close();
 
-            return gamedata;
-            
+                return gamedata;
+            }
         }
         else
         {
